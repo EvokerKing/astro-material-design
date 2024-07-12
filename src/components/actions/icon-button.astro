@@ -1,0 +1,234 @@
+---
+import Icon from "../icon.astro";
+interface Props {
+	type?: 'standard' | 'filled' | 'tonal' | 'outlined',
+	selectable?: boolean,
+	onclick?: string
+}
+
+const { type = 'standard', selectable = false, onclick = '' } = Astro.props
+
+const colorDecoder = {'standard': "var(--md-color-on-surface-primary)", 'filled': "var(--md-color-primary)", 'tonal': "var(--md-color-on-surface-variant)", 'outlined': "var(--md-color-on-surface-variant)"}
+---
+
+<button class:list={[type, 'md-shape-corner-full']} onclick={onclick}><Icon size="24px" color={colorDecoder[type]}><slot /></Icon></button>
+
+{!!selectable && <script>
+	const button = document.querySelector('button')
+	const colorDecoder = {'standard': "var(--md-color-on-surface-primary)", 'filled': "var(--md-color-primary)", 'tonal': "var(--md-color-on-surface-variant)", 'outlined': "var(--md-color-on-surface-variant)"}
+	const selectedDecoder = {'standard': "var(--md-color-primary)", 'filled': "var(--md-color-on-primary)", 'tonal': "var(--md-color-on-secondary-container)", 'outlined': "var(--md-color-inverse-on-surface)"}
+	let type = ''
+
+	if (!!button) {
+		if (button.classList.contains('standard')) {
+			type = 'standard'
+		} else if (button.classList.contains('filled')) {
+			type = 'filled'
+		} else if (button.classList.contains('tonal')) {
+			type = 'tonal'
+		} else if (button.classList.contains('outlined')) {
+			type = 'outlined'
+		}
+		button.addEventListener('click', () => {
+			if (button.classList.toggle('selected')) {
+				button.children[0].style = `--fillNum: 1; --color: ${selectedDecoder[type]}; --weightNum: 400; --gradeNum: 0; --size: 24px; --clearance: 0;`
+			} else {
+				button.children[0].style = `--fillNum: 0; --color: ${colorDecoder[type]}; --weightNum: 400; --gradeNum: 0; --size: 24px; --clearance: 0;`
+			}
+		})
+	}
+</script>}
+
+<style>
+	.standard {
+        width: 40px;
+        height: 40px;
+        background: none;
+		border: none;
+        position: relative;
+	}
+
+    .standard.selected:hover::after {
+        background:  var(--md-color-primary);
+    }
+
+	.standard:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface-variant);
+        opacity: 0.08;
+        overflow: hidden;
+        border-radius: 100vh;
+	}
+
+	.standard:focus {
+		outline: none;
+	}
+
+    .standard.selected:focus::after {
+        background:  var(--md-color-primary);
+    }
+
+    .standard:focus::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface-variant);
+        opacity: 0.1;
+        overflow: hidden;
+        border-radius: 100vh;
+    }
+
+	.filled.selected {
+		background:  var(--md-color-primary);
+	}
+
+    .filled {
+        width: 40px;
+        height: 40px;
+        background: var(--md-color-surface-container-highest);
+        border: none;
+        position: relative;
+    }
+
+    .filled.selected:hover::after {
+        background:  var(--md-color-on-primary);
+    }
+
+    .filled:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-primary);
+        opacity: 0.08;
+        overflow: hidden;
+        border-radius: 100vh;
+    }
+
+    .filled:focus {
+        outline: none;
+    }
+
+    .filled.selected:focus::after {
+        background:  var(--md-color-on-primary);
+    }
+
+    .filled:focus::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-primary);
+        opacity: 0.1;
+        overflow: hidden;
+        border-radius: 100vh;
+    }
+
+    .tonal.selected {
+        background:  var(--md-color-secondary-container);
+    }
+
+    .tonal {
+        width: 40px;
+        height: 40px;
+        background: var(--md-color-surface-container-highest);
+        border: none;
+        position: relative;
+    }
+
+    .tonal.selected:hover::after {
+        background:  var(--md-color-on-secondary-container);
+    }
+
+    .tonal:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface-variant);
+        opacity: 0.08;
+        overflow: hidden;
+        border-radius: 100vh;
+    }
+
+    .tonal:focus {
+        outline: none;
+    }
+
+    .tonal.selected:focus::after {
+        background:  var(--md-color-on-secondary-container);
+    }
+
+    .tonal:focus::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface-variant);
+        opacity: 0.1;
+        overflow: hidden;
+        border-radius: 100vh;
+    }
+
+    .outlined {
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: 1px solid var(--md-color-outline);
+        position: relative;
+    }
+
+    .outlined.selected:hover::after {
+        background:  var(--md-color-primary);
+    }
+
+    .outlined:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface-variant);
+        opacity: 0.08;
+        overflow: hidden;
+		border-radius: 100vh;
+    }
+
+    .outlined:focus {
+        outline: none;
+    }
+
+    .outlined.selected:focus::after {
+        background:  var(--md-color-primary);
+    }
+
+    .outlined:focus::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface-variant);
+        opacity: 0.1;
+        overflow: hidden;
+        border-radius: 100vh;
+    }
+</style>

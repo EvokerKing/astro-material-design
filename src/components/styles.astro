@@ -1,0 +1,390 @@
+---
+interface Props {
+	hex: string
+}
+const { hex } = Astro.props
+
+import { themeFromSourceColor, argbFromHex, hexFromArgb } from "@material/material-color-utilities"
+
+const theme = themeFromSourceColor(argbFromHex(hex))
+
+const primary = theme.palettes.primary
+const secondary = theme.palettes.secondary
+const tertiary = theme.palettes.tertiary
+const neutral = theme.palettes.neutral
+const neutralVariant = theme.palettes.neutralVariant
+const error = theme.palettes.error
+
+const mdPrimary = hexFromArgb(primary.getHct(40).toInt())
+const mdOnPrimary = hexFromArgb(primary.getHct(100).toInt())
+const mdPrimaryContainer = hexFromArgb(primary.getHct(90).toInt())
+const mdOnPrimaryContainer = hexFromArgb(primary.getHct(10).toInt())
+
+const mdSecondary = hexFromArgb(secondary.getHct(40).toInt())
+const mdOnSecondary = hexFromArgb(secondary.getHct(100).toInt())
+const mdSecondaryContainer = hexFromArgb(secondary.getHct(90).toInt())
+const mdOnSecondaryContainer = hexFromArgb(secondary.getHct(10).toInt())
+
+const mdTertiary = hexFromArgb(tertiary.getHct(40).toInt())
+const mdOnTertiary = hexFromArgb(tertiary.getHct(100).toInt())
+const mdTertiaryContainer = hexFromArgb(tertiary.getHct(90).toInt())
+const mdOnTertiaryContainer = hexFromArgb(tertiary.getHct(10).toInt())
+
+const mdError = hexFromArgb(error.getHct(40).toInt())
+const mdOnError = hexFromArgb(error.getHct(100).toInt())
+const mdErrorContainer = hexFromArgb(error.getHct(90).toInt())
+const mdOnErrorContainer = hexFromArgb(error.getHct(10).toInt())
+
+const mdSurface = hexFromArgb(neutral.getHct(98).toInt())
+const mdOnSurface = hexFromArgb(neutral.getHct(10).toInt())
+const mdSurfaceVariant = hexFromArgb(neutralVariant.getHct(90).toInt())
+const mdOnSurfaceVariant = hexFromArgb(neutralVariant.getHct(30).toInt())
+const mdSurfaceContainerHighest = hexFromArgb(neutral.getHct(90).toInt())
+const mdSurfaceContainerHigh = hexFromArgb(neutral.getHct(92).toInt())
+const mdSurfaceContainer = hexFromArgb(neutral.getHct(94).toInt())
+const mdSurfaceContainerLow = hexFromArgb(neutral.getHct(96).toInt())
+const mdSurfaceContainerLowest = hexFromArgb(neutral.getHct(100).toInt())
+const mdInverseSurface = hexFromArgb(neutral.getHct(20).toInt())
+const mdInverseOnSurface = hexFromArgb(neutral.getHct(95).toInt())
+const mdSurfaceTint = `${hexFromArgb(primary.getHct(40).toInt())}04`
+
+const mdOutline = hexFromArgb(neutralVariant.getHct(50).toInt())
+const mdOutlineVariant = hexFromArgb(neutralVariant.getHct(80).toInt())
+
+const styles = `
+	:root {
+        --md-color-primary: ${mdPrimary};
+        --md-color-on-primary: ${mdOnPrimary};
+        --md-color-primary-container: ${mdPrimaryContainer};
+        --md-color-on-primary-container: ${mdOnPrimaryContainer};
+        --md-color-secondary: ${mdSecondary};
+        --md-color-on-secondary: ${mdOnSecondary};
+        --md-color-secondary-container: ${mdSecondaryContainer};
+        --md-color-on-secondary-container: ${mdOnSecondaryContainer};
+        --md-color-tertiary: ${mdTertiary};
+        --md-color-on-tertiary: ${mdOnTertiary};
+        --md-color-tertiary-container: ${mdTertiaryContainer};
+        --md-color-on-tertiary-container: ${mdOnTertiaryContainer};
+        --md-color-error: ${mdError};
+        --md-color-on-error: ${mdOnError};
+        --md-color-error-container: ${mdErrorContainer};
+        --md-color-on-error-container: ${mdOnErrorContainer};
+        --md-color-surface: ${mdSurface};
+        --md-color-on-surface: ${mdOnSurface};
+        --md-color-surface-variant: ${mdSurfaceVariant};
+        --md-color-on-surface-variant: ${mdOnSurfaceVariant};
+        --md-color-surface-container-highest: ${mdSurfaceContainerHighest};
+        --md-color-surface-container-high: ${mdSurfaceContainerHigh};
+        --md-color-surface-container: ${mdSurfaceContainer};
+        --md-color-surface-container-low: ${mdSurfaceContainerLow};
+        --md-color-surface-container-lowest: ${mdSurfaceContainerLowest};
+        --md-color-inverse-surface: ${mdInverseSurface};
+        --md-color-inverse-on-surface: ${mdInverseOnSurface};
+        --md-color-surface-tint: ${mdSurfaceTint};
+        --md-color-outline: ${mdOutline};
+        --md-color-outline-variant: ${mdOutlineVariant};
+    }
+`
+---
+
+<style is:global set:html={styles}></style>
+
+<style is:global>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+	.md-elevation-5 {
+		box-shadow: rgba(0, 0, 0, 0.1) 0 1px 12px;
+	}
+
+    .md-elevation-4 {
+        box-shadow: rgba(0, 0, 0, 0.15) 0 1px 8px;
+    }
+
+    .md-elevation-3 {
+        box-shadow: rgba(0, 0, 0, 0.2) 0 1px 6px;
+    }
+
+    .md-elevation-2 {
+        box-shadow: rgba(0, 0, 0, 0.25) 0 1px 3px;
+    }
+
+    .md-elevation-1 {
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+    }
+
+	.md-motion-easing-emphasized {
+		transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.md-motion-easing-emphasized-accelerate {
+		transition-timing-function: cubic-bezier(0.3, 0, 0.8, 0.15);
+	}
+
+	.md-motion-easing-emphasized-decelerate {
+		transition-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1);
+	}
+
+	.md-motion-easing-standard {
+		transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	.md-motion-easing-standard-accelerate {
+		transition-timing-function: cubic-bezier(0.3, 0, 1, 1);
+	}
+
+	.md-motion-easing-standard-decelerate {
+		transition-timing-function: cubic-bezier(0, 0, 0, 1);
+	}
+
+	.md-motion-easing-legacy {
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.md-motion-easing-legacy-accelerate {
+		transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+	}
+
+    .md-motion-easing-legacy-decelerate {
+        transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+
+	.md-motion-easing-linear {
+		transition-timing-function: linear;
+	}
+
+	.md-motion-duration-short1 {
+		transition-duration: 50ms;
+	}
+
+    .md-motion-duration-short2 {
+        transition-duration: 100ms;
+    }
+
+	.md-motion-duration-short3 {
+		transition-duration: 150ms;
+	}
+
+	.md-motion-duration-short4 {
+		transition-duration: 200ms;
+	}
+
+	.md-motion-duration-medium1 {
+		transition-duration: 250ms;
+	}
+
+    .md-motion-duration-medium2 {
+        transition-duration: 300ms;
+    }
+
+    .md-motion-duration-medium3 {
+        transition-duration: 350ms;
+    }
+
+    .md-motion-duration-medium4 {
+        transition-duration: 400ms;
+    }
+
+    .md-motion-duration-long1 {
+        transition-duration: 450ms;
+    }
+
+    .md-motion-duration-long2 {
+        transition-duration: 500ms;
+    }
+
+    .md-motion-duration-long3 {
+        transition-duration: 550ms;
+    }
+
+    .md-motion-duration-long4 {
+        transition-duration: 600ms;
+    }
+
+    .md-motion-duration-extra-long1 {
+        transition-duration: 700ms;
+    }
+
+    .md-motion-duration-extra-long2 {
+        transition-duration: 800ms;
+    }
+
+    .md-motion-duration-extra-long3 {
+        transition-duration: 900ms;
+    }
+
+    .md-motion-duration-extra-long4 {
+        transition-duration: 1s;
+    }
+
+	.md-shape-corner-full {
+		border-radius: 100vh;
+	}
+
+    .md-shape-corner-extra-large-top {
+        border-radius: 28px 0;
+    }
+
+    .md-shape-corner-extra-large {
+        border-radius: 28px;
+    }
+
+    .md-shape-corner-large-top {
+        border-radius: 16px 0;
+    }
+
+    .md-shape-corner-large-end {
+        border-radius: 0 16px 16px 0;
+    }
+
+    .md-shape-corner-large-start {
+        border-radius: 16px 0 0 16px;
+    }
+
+    .md-shape-corner-large {
+        border-radius: 16px;
+    }
+
+    .md-shape-corner-medium {
+        border-radius: 12px;
+    }
+
+    .md-shape-corner-small {
+        border-radius: 8px;
+    }
+
+    .md-shape-corner-extra-small-top {
+        border-radius: 4px 0;
+    }
+
+    .md-shape-corner-extra-small {
+        border-radius: 4px;
+    }
+
+    .md-shape-corner-none {
+        border-radius: 0;
+    }
+
+	.md-typescale-display-large {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+		font-size: 57pt;
+		letter-spacing: -0.25pt;
+        line-height: 64pt;
+	}
+
+    .md-typescale-display-medium {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+        font-size: 45pt;
+        letter-spacing: 0;
+        line-height: 52pt;
+    }
+
+    .md-typescale-display-small {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+        font-size: 36pt;
+        letter-spacing: 0;
+        line-height: 44pt;
+    }
+
+    .md-typescale-headline-large {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+        font-size: 32pt;
+        letter-spacing: 0;
+        line-height: 40pt;
+    }
+
+    .md-typescale-headline-medium {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+        font-size: 28pt;
+        letter-spacing: 0;
+        line-height: 36pt;
+    }
+
+    .md-typescale-headline-small {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+        font-size: 24pt;
+        letter-spacing: 0;
+        line-height: 32pt;
+    }
+
+    .md-typescale-title-large {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+        font-size: 22pt;
+        letter-spacing: 0;
+        line-height: 28pt;
+    }
+
+    .md-typescale-title-medium {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 500;
+        font-size: 16pt;
+        letter-spacing: 0.15pt;
+        line-height: 24pt;
+    }
+
+    .md-typescale-title-small {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 500;
+        font-size: 14pt;
+        letter-spacing: 0.1pt;
+        line-height: 20pt;
+    }
+
+    .md-typescale-body-large {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+        font-size: 16pt;
+        letter-spacing: 0.5pt;
+        line-height: 24pt;
+    }
+
+    .md-typescale-body-medium {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+        font-size: 14pt;
+        letter-spacing: 0.25pt;
+        line-height: 20pt;
+    }
+
+    .md-typescale-body-small {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 400;
+        font-size: 12pt;
+        letter-spacing: 0.4pt;
+        line-height: 16pt;
+    }
+
+    .md-typescale-label-large {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 500;
+        font-size: 14pt;
+        letter-spacing: 0.1pt;
+        line-height: 20pt;
+    }
+
+    .md-typescale-label-medium {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 500;
+        font-size: 12pt;
+        letter-spacing: 0.5pt;
+        line-height: 16pt;
+    }
+
+	.md-typescale-prominent {
+        font-weight: 700 !important;
+	}
+
+    .md-typescale-label-small {
+        font-family: "Roboto Flex", system-ui;
+        font-weight: 500;
+        font-size: 11pt;
+        letter-spacing: 0.5pt;
+        line-height: 16pt;
+    }
+</style>

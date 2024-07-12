@@ -1,0 +1,96 @@
+---
+import Icon from "../icon.astro";
+interface Props {
+	type?: 'single' | 'multi',
+	items: string
+}
+
+const { type = 'single', items } = Astro.props
+const list = JSON.parse(items)
+
+if (list.length < 2 || list.length > 5) {
+	throw new Error(`Incorrect number of items in segmented button. Expected 2-5, found ${list.length}`)
+}
+---
+
+<main class="md-shape-corner-full">
+	{list.map((i) => <div><p class="md-typescale-label-large">{i}</p></div>)}
+</main>
+
+<script>
+	function addIcon(x: Node) {
+		const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+		icon.style = 'width: 24px; height: 24px; color: var(--md-color-on-secondary-container); user-select: none;'
+		icon.innerHTML = '<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>'
+		icon.setAttribute('viewBox', '0 -960 960 960')
+		x.insertBefore(icon, x.children[0])
+	}
+
+	document.querySelector('main')!.children[0].classList.add('selected')
+	addIcon(document.querySelector('main')!.children[0])
+
+	document.querySelectorAll('div').forEach(el => {
+		el.addEventListener('click', (e) => {
+			let element
+			if (e.target?.tagName === 'P' || e.target?.tagName === 'svg') {
+				element = e.target.parentElement
+			} else {
+				element = e.target
+			}
+			if (!element.classList.contains('selected')) {
+				element.classList.add('selected')
+				addIcon(element)
+			}
+			const children = document.querySelector('main')!.children
+			for (let i = 0; i < children.length; i++) {
+				if (children[i].classList.contains('selected') && children[i] != element) {
+					children[i].classList.remove('selected')
+					children[i].children[0].remove()
+				}
+			}
+		})
+	})
+
+</script>
+
+<style>
+	main {
+		border: 1px solid var(--md-color-outline);
+        height: 40px;
+		display: flex;
+		flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        overflow: hidden;
+	}
+
+	div:first-child {
+		border-left: none;
+	}
+
+	div {
+		padding: 0 16px;
+		display: flex;
+		flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid var(--md-color-outline);
+        height: 100%;
+		cursor: pointer;
+		gap: 8px;
+	}
+
+	div.selected {
+        background: var(--md-color-secondary-container);
+	}
+
+	p.selected {
+		color: var(--md-color-on-secondary-container);
+	}
+
+	p {
+		color: var(--md-color-on-surface);
+		user-select: none;
+	}
+</style>

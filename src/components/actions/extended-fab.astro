@@ -1,0 +1,64 @@
+---
+import Icon from "../icon.astro";
+import Styles from "../styles.astro";
+interface Props {
+	onclick?: string,
+	icon?: string | undefined,
+}
+
+const { onclick = "", icon = undefined } = Astro.props
+---
+
+<button onclick={onclick} class="md-shape-corner-large md-elevation-3 md-typescale-label-large">{!!icon && <Icon size="24" color="var(--md-color-on-primary-container)">{icon}</Icon>}<slot /></button>
+
+<style>
+	button {
+        background: var(--md-color-primary-container);
+        height: 56px;
+		color: var(--md-color-on-primary-container);
+		cursor: pointer;
+		overflow: hidden;
+		position: fixed;
+		bottom: 16px;
+		right: 16px;
+		min-width: 80px;
+		border: none;
+		padding: 16px;
+		gap: 8px;
+		display: flex;
+		justify-content: center;
+        align-items: center;
+	}
+
+	button:hover {
+        box-shadow: rgba(0, 0, 0, 0.15) 0 1px 8px;
+	}
+
+	button:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-primary-container);
+        opacity: 0.08;
+        overflow: hidden;
+	}
+
+	button:focus {
+		outline: none;
+	}
+
+    button:focus::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-primary-container);
+        opacity: 0.1;
+        overflow: hidden;
+    }
+</style>

@@ -1,0 +1,252 @@
+---
+import Icon from "../icon.astro";
+interface Props {
+	type: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text',
+	onclick?: string,
+	icon?: string | undefined,
+}
+const { type, onclick = "", icon = undefined } = Astro.props
+
+let padding
+if (!!icon) {
+	padding = '0 24px 0 16px'
+} else {
+	padding = '0 24px'
+}
+if (type == 'text' && !icon) {
+	padding = '0 12px'
+} else if (type == 'text' && !!icon) {
+	padding = '0 16px 0 12px'
+}
+
+const colorDecoder = {'elevated': 'var(--md-color-primary)', 'filled': 'var(--md-color-on-primary)', 'tonal': 'var(--md-color-on-secondary-container', 'outlined': 'var(--md-color-primary)', 'text': 'var(--md-color-primary)'};
+---
+
+<button onclick={onclick} class={`${type} md-shape-corner-full ${type == 'elevated' && 'md-elevation-1'} md-typescale-label-large md-motion-easing-emphasized md-motion-duration-short4`}>{!!icon && <Icon size="18" color={colorDecoder[type]} weight="500">{icon}</Icon>}<slot /></button>
+
+<style define:vars={{padding}}>
+	.elevated {
+        height: 40px;
+        background:  var(--md-color-surface-container-low);
+		overflow: hidden;
+		position: relative;
+		color: var(--md-color-primary);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		padding: var(--padding);
+		border: none;
+		cursor: pointer;
+	}
+
+	.elevated::after {
+		content: "";
+        position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background:  var(--md-color-surface-tint);
+        overflow: hidden;
+	}
+
+    .elevated:hover {
+        box-shadow: rgba(0, 0, 0, 0.25) 0 1px 3px;
+    }
+
+    .elevated:hover::after {
+        background: var(--md-color-primary);
+        opacity: 0.08;
+    }
+
+	.elevated:focus {
+		outline: none;
+	}
+
+    .elevated:focus::after {
+        background: var(--md-color-primary);
+        opacity: 0.1;
+    }
+
+    .filled {
+        height: 40px;
+        background:  var(--md-color-primary);
+        overflow: hidden;
+        position: relative;
+        color: var(--md-color-on-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: var(--padding);
+        border: none;
+        cursor: pointer;
+    }
+
+    .filled:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+    }
+
+    .filled:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-primary);
+        opacity: 0.08;
+        overflow: hidden;
+    }
+
+    .filled:focus {
+        outline: none;
+    }
+
+    .filled:focus::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-primary);
+        opacity: 0.1;
+        overflow: hidden;
+    }
+
+    .tonal {
+        height: 40px;
+        background:  var(--md-color-secondary-container);
+        overflow: hidden;
+        position: relative;
+        color: var(--md-color-on-secondary-container);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: var(--padding);
+        border: none;
+        cursor: pointer;
+    }
+
+    .tonal:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+    }
+
+    .tonal:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-secondary-container);
+        opacity: 0.08;
+        overflow: hidden;
+    }
+
+    .tonal:focus {
+        outline: none;
+    }
+
+    .tonal:focus::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-secondary-container);
+        opacity: 0.1;
+        overflow: hidden;
+    }
+
+    .outlined {
+        height: 40px;
+        overflow: hidden;
+        background: none;
+        border: 1px solid var(--md-color-outline);
+        position: relative;
+        color: var(--md-color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: var(--padding);
+        cursor: pointer;
+    }
+
+    .outlined:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--md-color-primary);
+        opacity: 0.08;
+        overflow: hidden;
+    }
+
+    .outlined:focus {
+        outline: none;
+		border: 1px solid var(--md-color-primary);
+    }
+
+    .outlined:focus::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-primary);
+        opacity: 0.1;
+        overflow: hidden;
+    }
+
+    .text {
+        height: 40px;
+        overflow: hidden;
+        background: none;
+        position: relative;
+        color: var(--md-color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: var(--padding);
+		border: none;
+        cursor: pointer;
+    }
+
+    .text:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--md-color-primary);
+        opacity: 0.08;
+        overflow: hidden;
+    }
+
+    .text:focus {
+        outline: none;
+    }
+
+    .text:focus::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-primary);
+        opacity: 0.1;
+        overflow: hidden;
+    }
+</style>
