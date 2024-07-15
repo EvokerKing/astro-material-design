@@ -19,6 +19,7 @@ const mdPrimary = hexFromArgb(primary.getHct(40).toInt())
 const mdOnPrimary = hexFromArgb(primary.getHct(100).toInt())
 const mdPrimaryContainer = hexFromArgb(primary.getHct(90).toInt())
 const mdOnPrimaryContainer = hexFromArgb(primary.getHct(10).toInt())
+const mdInversePrimary = hexFromArgb(primary.getHct(80).toInt())
 
 const mdSecondary = hexFromArgb(secondary.getHct(40).toInt())
 const mdOnSecondary = hexFromArgb(secondary.getHct(100).toInt())
@@ -57,6 +58,7 @@ const styles = `
         --md-color-on-primary: ${mdOnPrimary};
         --md-color-primary-container: ${mdPrimaryContainer};
         --md-color-on-primary-container: ${mdOnPrimaryContainer};
+        --md-color-inverse-primary: ${mdInversePrimary};
         --md-color-secondary: ${mdSecondary};
         --md-color-on-secondary: ${mdOnSecondary};
         --md-color-secondary-container: ${mdSecondaryContainer};

@@ -1,17 +1,29 @@
 ---
 import Icon from "../icon.astro";
+import Tooltip from "../communication/tooltip.astro";
 interface Props {
 	type?: 'standard' | 'filled' | 'tonal' | 'outlined',
 	selectable?: boolean,
-	onclick?: string
+	onclick?: string,
+	color?: string | undefined,
+	id?: string
 }
 
-const { type = 'standard', selectable = false, onclick = '' } = Astro.props
+const { type = 'standard', selectable = false, onclick = '', color, id = 'tooltipIdentification' } = Astro.props
 
-const colorDecoder = {'standard': "var(--md-color-on-surface-primary)", 'filled': "var(--md-color-primary)", 'tonal': "var(--md-color-on-surface-variant)", 'outlined': "var(--md-color-on-surface-variant)"}
+if (type != 'standard' && color) {
+	throw new Error(`Color cannot be specified when type is ${type}, the type must be standard.`)
+}
+
+const colorDecoder = {'standard': color ? color : "var(--md-color-on-surface-primary)", 'filled': "var(--md-color-primary)", 'tonal': "var(--md-color-on-surface-variant)", 'outlined': "var(--md-color-on-surface-variant)"}
 ---
 
-<button class:list={[type, 'md-shape-corner-full']} onclick={onclick}><Icon size="24px" color={colorDecoder[type]}><slot /></Icon></button>
+<button id={id} class:list={[type, 'md-shape-corner-full']} onclick={onclick}><Icon size='24px' color={colorDecoder[type]}><slot /></Icon></button>
+<Tooltip type="rich" onclick="alert('the button works')" target={id}>
+    <Fragment slot="subhead">Rich tooltip</Fragment>
+    Rich tooltips bring attention to a particular element or feature that warrants the user's focus.
+    <Fragment slot="action">Action</Fragment>
+</Tooltip>
 
 {!!selectable && <script>
 	const button = document.querySelector('button')
@@ -40,6 +52,13 @@ const colorDecoder = {'standard': "var(--md-color-on-surface-primary)", 'filled'
 </script>}
 
 <style>
+	button {
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+        align-items: center;
+	}
+
 	.standard {
         width: 40px;
         height: 40px;

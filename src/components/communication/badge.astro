@@ -1,0 +1,48 @@
+---
+interface props {
+	type?: 'small' | 'large',
+	number?: string
+}
+
+const { type =  Astro.props.number ? 'large' : 'small', number } = Astro.props
+
+let num
+if (number) {
+	if (parseInt(number) >= 1000) {
+		num = '999+'
+	} else {
+		num = `${parseInt(number)}`
+	}
+}
+---
+
+<div class:list={['md-shape-corner-full', type]}>{type == 'large' && <p class="md-typescale-label-small">{num}</p>}</div>
+
+<style>
+	div {
+        background: var(--md-color-error);
+        width: 6px;
+        height: 6px;
+        position: absolute;
+        top: 0;
+		right: 0;
+	}
+
+	div.large {
+		width: fit-content;
+        height: 14px;
+		padding: 4px;
+		display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 12px;
+		left: 12px;
+	}
+
+	p {
+		color: var(--md-color-on-error);
+        margin: 0;
+        line-height: 100%;
+	}
+</style>
