@@ -1,0 +1,82 @@
+---
+interface props {
+	type?: 'standard' | 'modal'
+}
+
+const { type = 'standard' } = Astro.props
+
+// to open: document.querySelector('.bottom-sheet')!.style.height = 'fit-content'
+---
+
+<div class:list={[type, "container", "md-elevation-1", "md-shape-corner-extra-large-top", "md-motion-easing-emphasized", "md-motion-duration-medium4", "bottom-sheet"]}>
+	<div class="handle md-shape-corner-full"></div>
+	<slot />
+</div>
+<div class:list={[type, 'scrim']}></div>
+
+<script>
+	document.querySelector('.scrim')!.addEventListener('click', () => {
+		document.querySelector('.bottom-sheet')!.style.height = '0'
+	});
+</script>
+
+<style>
+	.container {
+        background: var(--md-color-surface-container-low);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        align-self: center;
+        overflow: hidden;
+        width: 100%;
+		max-width: 640px;
+		height: 0;
+		z-index: 1;
+	}
+
+    .container.modal {
+        background: var(--md-color-surface-container-low);
+    }
+
+	.container::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-surface-tint);
+        overflow: hidden;
+	}
+
+	.scrim::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+	}
+
+	.scrim.modal::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  #0000000F;
+        overflow: hidden;
+	}
+
+	.handle {
+        background: var(--md-color-on-surface-variant);
+        opacity: 40%;
+        width: 32px;
+        height: 4px;
+        margin: 22px auto;
+	}
+</style>

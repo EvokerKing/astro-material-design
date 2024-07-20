@@ -1,0 +1,79 @@
+---
+interface props {
+	type?: 'elevated' | 'filled' | 'outlined',
+	style: string
+}
+
+const { type = 'elevated', style } = Astro.props
+---
+
+<div class:list={['container', type ,type == 'elevated' && 'md-elevation-1', 'md-shape-corner-medium']} style={style}>
+	<slot />
+</div>
+
+<style>
+	.container {
+		width: fit-content;
+        position: relative;
+        overflow: hidden;
+		padding: 12px;
+	}
+
+	.container.elevated {
+        background: var('--md-color-surface-container-low');
+	}
+
+	.container.elevated::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-surface-tint);
+        overflow: hidden;
+	}
+
+	.container.elevated:hover {
+		box-shadow: rgba(0, 0, 0, 0.25) 0 2.25px 3px 1.5px;
+	}
+
+    .container.filled {
+        background: var(--md-color-surface-container-highest);
+    }
+
+    .container.filled::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-surface-tint);
+        overflow: hidden;
+    }
+
+    .container.filled:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0 0.75px 1px 0.5px;
+    }
+
+    .container.outlined {
+        background: var(--md-color-surface);
+		border: 1px solid var(--md-color-outline-variant);
+    }
+
+    .container.outlined::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-surface-tint);
+        overflow: hidden;
+    }
+
+    .container.outlined:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0 0.75px 1px 0.5px;
+    }
+</style>

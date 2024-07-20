@@ -1,0 +1,20 @@
+---
+interface props {
+	width?: string,
+	style?: string,
+}
+
+const { width = '100%', style } = Astro.props
+---
+
+<div style={style}></div>
+
+<style define:vars={{width}}>
+	div {
+        width: var(--width);
+        text-align: center;
+        margin: auto;
+        height: 1px;
+        background: var(--md-color-outline-variant);
+	}
+</style>
