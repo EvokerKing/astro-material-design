@@ -1,8 +1,9 @@
 ---
 interface Props {
-	hex: string
+	hex: string,
+	dark: boolean
 }
-const { hex } = Astro.props
+const { hex, dark = false } = Astro.props
 
 import { themeFromSourceColor, argbFromHex, hexFromArgb } from "@material/material-color-utilities"
 
@@ -15,42 +16,42 @@ const neutral = theme.palettes.neutral
 const neutralVariant = theme.palettes.neutralVariant
 const error = theme.palettes.error
 
-const mdPrimary = hexFromArgb(primary.getHct(40).toInt())
-const mdOnPrimary = hexFromArgb(primary.getHct(100).toInt())
-const mdPrimaryContainer = hexFromArgb(primary.getHct(90).toInt())
-const mdOnPrimaryContainer = hexFromArgb(primary.getHct(10).toInt())
-const mdInversePrimary = hexFromArgb(primary.getHct(80).toInt())
+const mdPrimary = hexFromArgb(primary.getHct(dark ? 80 : 40).toInt())
+const mdOnPrimary = hexFromArgb(primary.getHct(dark ? 20 : 100).toInt())
+const mdPrimaryContainer = hexFromArgb(primary.getHct(dark ? 30 : 90).toInt())
+const mdOnPrimaryContainer = hexFromArgb(primary.getHct(dark ? 90 : 10).toInt())
+const mdInversePrimary = hexFromArgb(primary.getHct(dark ? 40 : 80).toInt())
 
-const mdSecondary = hexFromArgb(secondary.getHct(40).toInt())
-const mdOnSecondary = hexFromArgb(secondary.getHct(100).toInt())
-const mdSecondaryContainer = hexFromArgb(secondary.getHct(90).toInt())
-const mdOnSecondaryContainer = hexFromArgb(secondary.getHct(10).toInt())
+const mdSecondary = hexFromArgb(secondary.getHct(dark ? 80 : 40).toInt())
+const mdOnSecondary = hexFromArgb(secondary.getHct(dark ? 20 : 100).toInt())
+const mdSecondaryContainer = hexFromArgb(secondary.getHct(dark ? 30 : 90).toInt())
+const mdOnSecondaryContainer = hexFromArgb(secondary.getHct(dark ? 90 : 10).toInt())
 
-const mdTertiary = hexFromArgb(tertiary.getHct(40).toInt())
-const mdOnTertiary = hexFromArgb(tertiary.getHct(100).toInt())
-const mdTertiaryContainer = hexFromArgb(tertiary.getHct(90).toInt())
-const mdOnTertiaryContainer = hexFromArgb(tertiary.getHct(10).toInt())
+const mdTertiary = hexFromArgb(tertiary.getHct(dark ? 80 : 40).toInt())
+const mdOnTertiary = hexFromArgb(tertiary.getHct(dark ? 20 : 100).toInt())
+const mdTertiaryContainer = hexFromArgb(tertiary.getHct(dark ? 30 : 90).toInt())
+const mdOnTertiaryContainer = hexFromArgb(tertiary.getHct(dark ? 90 : 10).toInt())
 
-const mdError = hexFromArgb(error.getHct(40).toInt())
-const mdOnError = hexFromArgb(error.getHct(100).toInt())
-const mdErrorContainer = hexFromArgb(error.getHct(90).toInt())
-const mdOnErrorContainer = hexFromArgb(error.getHct(10).toInt())
+const mdError = hexFromArgb(error.getHct(dark ? 80 : 40).toInt())
+const mdOnError = hexFromArgb(error.getHct(dark ? 20 : 100).toInt())
+const mdErrorContainer = hexFromArgb(error.getHct(dark ? 30 : 90).toInt())
+const mdOnErrorContainer = hexFromArgb(error.getHct(dark ? 90 : 10).toInt())
 
-const mdSurface = hexFromArgb(neutral.getHct(98).toInt())
-const mdOnSurface = hexFromArgb(neutral.getHct(10).toInt())
-const mdSurfaceVariant = hexFromArgb(neutralVariant.getHct(90).toInt())
-const mdOnSurfaceVariant = hexFromArgb(neutralVariant.getHct(30).toInt())
-const mdSurfaceContainerHighest = hexFromArgb(neutral.getHct(90).toInt())
-const mdSurfaceContainerHigh = hexFromArgb(neutral.getHct(92).toInt())
-const mdSurfaceContainer = hexFromArgb(neutral.getHct(94).toInt())
-const mdSurfaceContainerLow = hexFromArgb(neutral.getHct(96).toInt())
-const mdSurfaceContainerLowest = hexFromArgb(neutral.getHct(100).toInt())
-const mdInverseSurface = hexFromArgb(neutral.getHct(20).toInt())
-const mdInverseOnSurface = hexFromArgb(neutral.getHct(95).toInt())
-const mdSurfaceTint = `${hexFromArgb(primary.getHct(40).toInt())}0C`
+const mdSurface = hexFromArgb(neutral.getHct(dark ? 6 : 98).toInt())
+const mdOnSurface = hexFromArgb(neutral.getHct(dark ? 90 : 10).toInt())
+const mdSurfaceVariant = hexFromArgb(neutralVariant.getHct(dark ? 30 : 90).toInt())
+const mdOnSurfaceVariant = hexFromArgb(neutralVariant.getHct(dark ? 80 : 30).toInt())
+const mdSurfaceContainerHighest = hexFromArgb(neutral.getHct(dark ? 22 : 90).toInt())
+const mdSurfaceContainerHigh = hexFromArgb(neutral.getHct(dark ? 17 : 92).toInt())
+const mdSurfaceContainer = hexFromArgb(neutral.getHct(dark ? 12 : 94).toInt())
+const mdSurfaceContainerLow = hexFromArgb(neutral.getHct(dark ? 10 : 96).toInt())
+const mdSurfaceContainerLowest = hexFromArgb(neutral.getHct(dark ? 4 : 100).toInt())
+const mdInverseSurface = hexFromArgb(neutral.getHct(dark ? 90 : 20).toInt())
+const mdInverseOnSurface = hexFromArgb(neutral.getHct(dark ? 20 : 95).toInt())
+const mdSurfaceTint = `${hexFromArgb(primary.getHct(dark ? 80 : 40).toInt())}0C`
 
-const mdOutline = hexFromArgb(neutralVariant.getHct(50).toInt())
-const mdOutlineVariant = hexFromArgb(neutralVariant.getHct(80).toInt())
+const mdOutline = hexFromArgb(neutralVariant.getHct(dark ? 60 : 50).toInt())
+const mdOutlineVariant = hexFromArgb(neutralVariant.getHct(dark ? 30 : 80).toInt())
 
 const styles = `
 	:root {
