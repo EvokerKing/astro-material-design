@@ -1,0 +1,18 @@
+---
+interface props {
+	style?: string,
+}
+
+const { style } = Astro.props
+---
+
+<div class="md-motion-easing-emphasized md-motion-duration-extra-long4 tab" style={style}>
+	<slot />
+</div>
+
+<style>
+	.tab {
+        width: 0;
+        height: 100vh;
+	}
+</style>

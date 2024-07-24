@@ -2,12 +2,13 @@
 interface props {
 	width?: string,
 	style?: string,
+	absolute?: boolean,
 }
 
-const { width = '100%', style } = Astro.props
+const { width = '100%', style, absolute } = Astro.props
 ---
 
-<div style={style}></div>
+<div style={style} class:list={{absolute}}></div>
 
 <style define:vars={{width}}>
 	div {
@@ -16,5 +17,10 @@ const { width = '100%', style } = Astro.props
         margin: auto;
         height: 1px;
         background: var(--md-color-outline-variant);
+	}
+
+	.absolute {
+		position: absolute;
+		bottom: 0;
 	}
 </style>

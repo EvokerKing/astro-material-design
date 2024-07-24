@@ -16,9 +16,13 @@ if (number) {
 }
 ---
 
-<div class:list={['md-shape-corner-full', type]}>{type == 'large' && <p class="md-typescale-label-small">{num}</p>}</div>
+<div class:list={['md-shape-corner-full', type]} slot="badge">{type == 'large' && <p class="md-typescale-label-small">{num}</p>}</div>
 
 <style>
+	.md-typescale-label-small {
+		font-size: 9pt !important;
+	}
+
 	div {
         background: var(--md-color-error);
         width: 6px;
@@ -30,14 +34,13 @@ if (number) {
 
 	div.large {
 		width: fit-content;
-        height: 14px;
 		padding: 4px;
 		display: flex;
         justify-content: center;
         align-items: center;
         position: absolute;
-        bottom: 12px;
-		left: 12px;
+        top: 0;
+		left: 18px;
 	}
 
 	p {

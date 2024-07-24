@@ -1,0 +1,107 @@
+---
+import Icon from "../icon.astro";
+import Badge from "../communication/badge.astro";
+import Divider from "../containment/divider.astro";
+interface props {
+	list: Array<any>
+}
+
+const { list } = Astro.props
+---
+
+<header class="tabs">
+	{list.map((i: any, index: number) => (
+		<div id={`${index}`} class="item">
+			<Icon>{i[1]}{i[2] && (i[2] == 'small' ? <Badge /> : <Badge number={i[2]} />)}</Icon>
+			<p class="md-typescale-title-small" style="margin: 0;">{i[0]}</p>
+            <div class="active-indicator md-motion-easing-emphasized md-motion-duration-short4"></div>
+		</div>
+	))}
+	<Divider absolute />
+</header>
+<main class="tabs">
+	<slot />
+</main>
+
+<script>
+	function select(index: number) {
+		if (document.querySelector('.active-nochange')) {
+			document.querySelector('.active-nochange')!.style.width = '0'
+			document.querySelector('.active-header')!.children[0].style = '--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: #000000;--clearance: 0;'
+			document.querySelector('.active-header')!.children[1].classList.remove('active')
+			document.querySelector('.active-header')!.children[2].style.width = '0'
+			document.querySelector('.active-nochange')!.classList.remove('active-nochange')
+			document.querySelector('.active-header')!.classList.remove('active-header')
+		}
+
+		document.querySelector('main.tabs')!.children[index].style.width = '100%'
+		document.querySelector('header.tabs')!.children[index].children[0].style = '--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-primary);--clearance: 0;'
+		document.querySelector('header.tabs')!.children[index].children[1].classList.add('active')
+		document.querySelector('header.tabs')!.children[index].children[2].style.width = `${document.querySelector('header.tabs')!.children[index].children[1].offsetWidth}px`
+
+		document.querySelector('main.tabs')!.children[index].classList.add('active-nochange')
+		document.querySelector('header.tabs')!.children[index].classList.add('active-header')
+	}
+	select(0)
+
+	const children = document.querySelector('header.tabs')!.children
+	for (let i = 0; i < children.length; i++) {
+		children[i].addEventListener('click', e => {
+			let target
+			if (e.target!.tagName !== 'DIV') {
+				target = e.target!.parentElement
+			} else {
+				target = e.target
+			}
+			select(target.id)
+		})
+	}
+</script>
+
+<style>
+	main.tabs {
+		display: flex;
+		flex-direction: row;
+	}
+
+	header {
+        height: 64px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+        justify-content: flex-start;
+        position: relative;
+		overflow-x: scroll;
+        background: var(--md-color-surface);
+	}
+
+	.active-indicator {
+        height: 4px;
+		border-radius: 4px 4px 0 0;
+        position: absolute;
+		bottom: 0;
+        background: var(--md-color-primary);
+	}
+
+	.active {
+		color: var(--md-color-primary) !important;
+	}
+
+	.item {
+		display: flex;
+		flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 33.333%;
+        height: 100%;
+		color: var(--md-color-on-surface) !important;
+		cursor: pointer;
+		flex-shrink: 0;
+	}
+
+	p, span {
+		pointer-events: none;
+		user-select: none;
+	}
+</style>

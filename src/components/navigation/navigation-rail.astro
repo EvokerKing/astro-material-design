@@ -1,0 +1,86 @@
+---
+import Badge from "../communication/badge.astro";
+import Icon from "../icon.astro";
+interface props {
+	json: string,
+	selected: string,
+}
+
+const { json, selected } = Astro.props
+const list = JSON.parse(json)
+
+if (list.length < 3 || list.length > 7) {
+	throw new Error(`Expected 3-7 items in nav rail, found ${list.length}`)
+}
+---
+
+<main>
+	<div style="position: absolute; top: 25px"><slot name="menu" /></div>
+	<div style="position: absolute; top: 65px"><slot name="fab" /></div>
+	<div class="container">
+		{list.map((i, iter) => <div class="item" onclick={i[2]}>
+			{iter == parseInt(selected) ?
+					<div class="active md-shape-corner-full"><Icon>{i[1]}{i[3] && (i[3] == 'small' ? <Badge /> : <Badge number={i[3]} />)}</Icon></div> :
+					<Icon>{i[1]}{i[3] && (i[3] == 'small' ? <Badge /> : <Badge number={i[3]} />)}</Icon>}
+			<p class="md-typescale-label-medium">{i[0]}</p>
+		</div>)}
+	</div>
+</main>
+
+<style>
+    .active {
+        background: var(--md-color-secondary-container);
+        height: 32px;
+        width: 64px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    main {
+        background: var(--md-color-surface);
+        width: 80px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+    }
+
+	.container {
+        width: 100%;
+		display: flex;
+		flex-direction: column;
+        justify-content: center;
+        align-items: center;
+		gap: 12px;
+	}
+
+    .item {
+        width: 100%;
+        height: 56px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .md-typescale-label-medium {
+        color: var(--md-color-on-surface-variant);
+        margin: 4px 0 0 0;
+        text-align: center;
+    }
+
+    .selected .md-typescale-label-medium {
+        color: var(--md-color-on-surface);
+    }
+
+	.removable {
+        height: 40px;
+        width: 100%;
+	}
+</style>

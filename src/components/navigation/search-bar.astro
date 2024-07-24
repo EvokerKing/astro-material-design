@@ -1,0 +1,57 @@
+---
+import Icon from "../icon.astro";
+interface props {
+	placeholder: string,
+	name?: string,
+}
+
+const { placeholder, name } = Astro.props
+---
+
+<div class="md-elevation-3 md-shape-corner-full">
+	<slot name="leading"><Icon>search</Icon></slot>
+	<input type="text" id={name} name={name} class="md-typescale-large-body" placeholder={placeholder} />
+	<slot name="trailing" />
+</div>
+
+<style>
+	div {
+        background: var(--md-color-surface-container-high);
+        position: relative;
+		overflow: hidden;
+        height: 56px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+		padding: 0 16px;
+		min-width: 360px;
+		max-width: 720px;
+	}
+
+	div::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-surface-tint);
+        overflow: hidden;
+		pointer-events: none;
+	}
+
+	input {
+		color: var(--md-color-on-surface);
+        width: 100%;
+        background: none;
+        height: 100%;
+		border: none;
+		font-size: 16pt;
+	}
+
+	input:focus {
+		outline: none;
+	}
+</style>
