@@ -1,54 +1,24 @@
-# Astro Starter Kit: Basics
+# astro-material-design
+### Introduction
+astro-material-design is an Astro component library that brings the sleek, modern, customizable, and consistent look of Material Design 3 to your Astro projects. It provides a set of components, utilities, and theming options to help you build beautiful user interfaces.
 
-```sh
-npm create astro@latest -- --template basics
-```
+### Usage
+#### Basic Setup
+1. Make your own page in [src/pages](src/pages)
+2. Import the components you'll use or import all components. Read [testing.astro](src/pages/testing.astro) for the imports.
+3. Start coding with the components.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+We will soon have a npm packages however for now we recommend cloning this repo or just copying the components folder into your astro project
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Components
+The library includes a variety of Material Design 3 components, such as:
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- Buttons
+- Cards
+- Typography
+- Inputs
+- Navigation
+- ...and more
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Documentation
+We will try to get a wiki at some point however currently, we suggest using [Material 3 UI docs](https://m3.material.io) and reading the props of the components in [src/components](src/components).
