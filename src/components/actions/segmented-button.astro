@@ -2,10 +2,11 @@
 import Icon from "../icon.astro";
 interface Props {
 	type?: 'single' | 'multi',
-	items: string
+	items: string,
+	id: string,
 }
 
-const { type = 'single', items } = Astro.props
+const { type = 'single', items, id = 'segmentedButton' } = Astro.props
 const list = JSON.parse(items)
 
 if (list.length < 2 || list.length > 5) {
@@ -26,10 +27,10 @@ if (list.length < 2 || list.length > 5) {
 		x.insertBefore(icon, x.children[0])
 	}
 
-	document.querySelector('main')!.children[0].classList.add('selected')
+	document.querySelector('#segmentedButton')!.children[0].classList.add('selected')
 	addIcon(document.querySelector('main')!.children[0])
 
-	document.querySelectorAll('div').forEach(el => {
+	document.querySelectorAll('#segmentedButton div').forEach(el => {
 		el.addEventListener('click', (e) => {
 			let element
 			if (e.target?.tagName === 'P' || e.target?.tagName === 'svg') {
@@ -50,7 +51,6 @@ if (list.length < 2 || list.length > 5) {
 			}
 		})
 	})
-
 </script>
 
 <style>

@@ -1,0 +1,65 @@
+---
+import Icon from "../icon.astro";
+interface Props {
+	state?: 'selected' | 'unselected'
+}
+
+const { state = 'unselected' } = Astro.props
+---
+
+<label class="switch">
+	<input type="checkbox" checked={state == 'selected'} />
+	<span class="track md-motion-easing-emphasized md-motion-duration-short4 md-shape-corner-full"></span>
+</label>
+
+<style>
+	.switch {
+        position: relative;
+		display: inline-block;
+        width: 52px;
+        height: 32px;
+	}
+
+	.switch input {
+		display: none;
+	}
+
+    .track {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--md-color-surface-container-highest);
+		outline: 2px solid var(--md-color-outline);
+    }
+
+    .track::before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+		top: 8px;
+		bottom: 8px;
+		left: 8px;
+        background-color: var(--md-color-outline);
+        -webkit-transition: .4s;
+        transition: .4s;
+		border-radius: 100vh;
+    }
+
+    input:checked + .track {
+        background-color: var(--md-color-primary);
+		outline: none;
+    }
+
+    input:checked + .track:before {
+        transform: translateX(16px);
+        background: var(--md-color-on-primary);
+        width: 24px;
+        height: 24px;
+		top: 4px;
+		bottom: 4px;
+    }
+</style>

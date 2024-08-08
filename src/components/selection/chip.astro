@@ -1,0 +1,152 @@
+---
+import Icon from "../icon.astro";
+interface Props {
+	type?: 'assist' | 'filter' | 'input' | 'suggestion',
+	icon?: string,
+	trailingIcon?: string,
+	onclick?: string
+}
+
+const { type = 'suggestion', icon, trailingIcon, onclick } = Astro.props
+---
+
+<div class:list={["md-shape-corner-small", type]} onclick={type == 'filter' ? 'toggleSelection(event)' : onclick}>
+	{type == 'assist' || type == 'filter' || type == 'input' && <Icon size="18px" color={type == 'filter' ? 'var(--md-color-on-secondary-container)' : 'var(--md-color-primary)'} grade="200" weight="600">{icon}</Icon>}
+	<p class="md-typescale-label-large"><slot /></p>
+	{type == 'filter' || type == 'input' && <Icon size="18px" color="var(--md-color-on-surface-variant)" grade="200" weight="600">{trailingIcon}</Icon>}
+</div>
+
+<script is:inline>
+	function toggleSelection(e) {
+		let element
+		if (e.target?.tagName !== 'DIV') {
+			element = e.target.parentElement
+		} else {
+			element = e.target
+		}
+
+		element.classList.toggle("selected")
+	}
+</script>
+
+<style>
+	div.assist {
+        height: 32px;
+		outline: 1px solid var(--md-color-outline);
+        background: var(--md-color-surface-container-low);
+        position: relative;
+        overflow: hidden;
+        width: fit-content;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+        align-items: center;
+		padding: 0 16px 0 8px;
+		gap: 8px;
+	}
+
+	div.assist:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface);
+        opacity: 0.08;
+        overflow: hidden;
+	}
+
+    div.filter {
+        height: 32px;
+        outline: 1px solid var(--md-color-outline);
+        background: var(--md-color-surface-container-low);
+        position: relative;
+        overflow: hidden;
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0 8px;
+        gap: 8px;
+    }
+
+    div.filter.selected {
+        outline: none;
+        background: var(--md-color-secondary-container);
+    }
+
+    div.filter:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface);
+        opacity: 0.08;
+        overflow: hidden;
+    }
+
+    div.input {
+        height: 32px;
+        outline: 1px solid var(--md-color-outline);
+        position: relative;
+        overflow: hidden;
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0 8px;
+        gap: 8px;
+    }
+
+    div.input:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface);
+        opacity: 0.08;
+        overflow: hidden;
+    }
+
+    div.suggestion {
+        height: 32px;
+        outline: 1px solid var(--md-color-outline);
+        position: relative;
+        overflow: hidden;
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0 16px;
+        gap: 8px;
+    }
+
+    div.suggestion:hover::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:  var(--md-color-on-surface);
+        opacity: 0.08;
+        overflow: hidden;
+    }
+
+	p {
+		color: var(--md-color-on-surface);
+        margin: 0;
+	}
+
+	div.selected p {
+		color: var(--md-color-on-secondary-container);
+	}
+</style>

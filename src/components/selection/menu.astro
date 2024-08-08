@@ -1,0 +1,45 @@
+---
+import Icon from "../icon.astro";
+interface Props {
+	list: Array<any>
+}
+
+const { list } = Astro.props
+
+// toggle shown: document.querySelector('.menu')!.classList.toggle('show'); document.querySelector('.menu')!.classList.toggle('md-elevation-2')
+---
+
+<main class="md-shape-corner-extra-small menu">
+	{list.map((i, iter) => <div onclick={i[3]}>
+		<Icon>{i[1]}</Icon>
+		<p class="md-typescale-label-large" style="margin: 0; width: 100%;">{i[0]}</p>
+		<Fragment set:html={i[2]}></Fragment>
+	</div>)}
+</main>
+
+<style>
+	main {
+        background: var(--md-color-surface-container);
+        min-width: 112px;
+        max-width: 280px;
+        width: fit-content;
+        padding: 0 12px;
+		box-sizing: border-box;
+		gap: 12px;
+        height: 0;
+        overflow: hidden;
+	}
+
+	main.show {
+        height: fit-content;
+	}
+
+	div {
+        height: 48px;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+        align-items: center;
+		gap: 12px;
+	}
+</style>

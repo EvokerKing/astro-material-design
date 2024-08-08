@@ -1,0 +1,41 @@
+---
+import Icon from "../icon.astro";
+interface props {
+	state?: 'unselected' | 'selected' | 'indeterminate'
+}
+
+const { state = 'unselected' } = Astro.props
+
+const decoder = {unselected: 'check_box_outline_blank', selected: 'check_box', indeterminate: 'indeterminate_check_box'}
+---
+
+<div class:list={["md-shape-corner-full", state]} onclick="if (event.target.classList.contains('indeterminate')) {event.target.classList.remove('indeterminate'); event.target.classList.add('unselected'); event.target.children[0].style = `--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-on-surface-variant);--clearance: 0;`; event.target.children[0].innerText = 'check_box_outline_blank'} else {if (event.target.classList.contains('unselected')) {event.target.children[0].style = `--fillNum: 1;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-primary);--clearance: 0;`; event.target.children[0].innerText = 'check_box'} else {event.target.children[0].style = `--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-on-surface-variant);--clearance: 0;`; event.target.children[0].innerText = 'check_box_outline_blank'} event.target.classList.toggle('unselected'); event.target.classList.toggle('selected');}">
+	<Icon color={state == 'unselected' ? "var(--md-color-on-surface-variant)" : "var(--md-color-primary)"} fill={state == 'unselected' ? "0" : "1"}>{decoder[state]}</Icon>
+</div>
+
+<style>
+	div {
+        width: fit-content;
+        height: fit-content;
+	}
+
+	div::after {
+		content: "";
+        width: 40px;
+        height: 40px;
+		border-radius: 100vh;
+        position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	div.selected:hover::after, div.indeterminate:hover::after {
+        background: var(--md-color-primary);
+		opacity: 0.08;
+	}
+
+    div.unselected:hover::after {
+        background: var(--md-color-on-surface);
+        opacity: 0.08;
+    }
+</style>

@@ -18,24 +18,24 @@ const error = theme.palettes.error
 
 const mdPrimary = hexFromArgb(primary.getHct(dark ? 80 : 40).toInt())
 const mdOnPrimary = hexFromArgb(primary.getHct(dark ? 20 : 100).toInt())
-const mdPrimaryContainer = hexFromArgb(primary.getHct(dark ? 30 : 90).toInt())
-const mdOnPrimaryContainer = hexFromArgb(primary.getHct(dark ? 90 : 10).toInt())
+const mdOnPrimaryContainer = hexFromArgb(primary.getHct(dark ? 30 : 90).toInt())
+const mdPrimaryContainer = hexFromArgb(primary.getHct(dark ? 90 : 10).toInt())
 const mdInversePrimary = hexFromArgb(primary.getHct(dark ? 40 : 80).toInt())
 
 const mdSecondary = hexFromArgb(secondary.getHct(dark ? 80 : 40).toInt())
 const mdOnSecondary = hexFromArgb(secondary.getHct(dark ? 20 : 100).toInt())
-const mdSecondaryContainer = hexFromArgb(secondary.getHct(dark ? 30 : 90).toInt())
-const mdOnSecondaryContainer = hexFromArgb(secondary.getHct(dark ? 90 : 10).toInt())
+const mdOnSecondaryContainer = hexFromArgb(secondary.getHct(dark ? 30 : 90).toInt())
+const mdSecondaryContainer = hexFromArgb(secondary.getHct(dark ? 90 : 10).toInt())
 
 const mdTertiary = hexFromArgb(tertiary.getHct(dark ? 80 : 40).toInt())
 const mdOnTertiary = hexFromArgb(tertiary.getHct(dark ? 20 : 100).toInt())
-const mdTertiaryContainer = hexFromArgb(tertiary.getHct(dark ? 30 : 90).toInt())
-const mdOnTertiaryContainer = hexFromArgb(tertiary.getHct(dark ? 90 : 10).toInt())
+const mdOnTertiaryContainer = hexFromArgb(tertiary.getHct(dark ? 30 : 90).toInt())
+const mdTertiaryContainer = hexFromArgb(tertiary.getHct(dark ? 90 : 10).toInt())
 
 const mdError = hexFromArgb(error.getHct(dark ? 80 : 40).toInt())
 const mdOnError = hexFromArgb(error.getHct(dark ? 20 : 100).toInt())
-const mdErrorContainer = hexFromArgb(error.getHct(dark ? 30 : 90).toInt())
-const mdOnErrorContainer = hexFromArgb(error.getHct(dark ? 90 : 10).toInt())
+const mdOnErrorContainer = hexFromArgb(error.getHct(dark ? 30 : 90).toInt())
+const mdErrorContainer = hexFromArgb(error.getHct(dark ? 90 : 10).toInt())
 
 const mdSurface = hexFromArgb(neutral.getHct(dark ? 6 : 98).toInt())
 const mdOnSurface = hexFromArgb(neutral.getHct(dark ? 90 : 10).toInt())
@@ -256,7 +256,7 @@ const styles = `
     }
 
     .md-shape-corner-extra-small-top {
-        border-radius: 4px 0;
+        border-radius: 4px 4px 0 0;
     }
 
     .md-shape-corner-extra-small {
