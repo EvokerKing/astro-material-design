@@ -4,13 +4,17 @@ interface Props {
 	type?: 'assist' | 'filter' | 'input' | 'suggestion',
 	icon?: string,
 	trailingIcon?: string,
-	onclick?: string
+	onclick?: string,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { type = 'suggestion', icon, trailingIcon, onclick } = Astro.props
+const { type = 'suggestion', icon, trailingIcon, onclick, id, className, style, slot } = Astro.props
 ---
 
-<div class:list={["md-shape-corner-small", type]} onclick={type == 'filter' ? 'toggleSelection(event)' : onclick}>
+<div class:list={["md-shape-corner-small", type, className]} onclick={type == 'filter' ? 'toggleSelection(event)' : onclick} id={id} slot={slot} style={style}>
 	{type == 'assist' || type == 'filter' || type == 'input' && <Icon size="18px" color={type == 'filter' ? 'var(--md-color-on-secondary-container)' : 'var(--md-color-primary)'} grade="200" weight="600">{icon}</Icon>}
 	<p class="md-typescale-label-large"><slot /></p>
 	{type == 'filter' || type == 'input' && <Icon size="18px" color="var(--md-color-on-surface-variant)" grade="200" weight="600">{trailingIcon}</Icon>}

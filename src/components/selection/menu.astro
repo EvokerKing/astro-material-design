@@ -1,15 +1,19 @@
 ---
 import Icon from "../icon.astro";
 interface Props {
-	list: Array<any>
+	list: Array<any>,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { list } = Astro.props
+const { list, id, className, style, slot } = Astro.props
 
 // toggle shown: document.querySelector('.menu')!.classList.toggle('show'); document.querySelector('.menu')!.classList.toggle('md-elevation-2')
 ---
 
-<main class="md-shape-corner-extra-small menu">
+<main class:list={["md-shape-corner-extra-small menu", className]} id={id} style={style} slot={slot}>
 	{list.map((i, iter) => <div onclick={i[3]}>
 		<Icon>{i[1]}</Icon>
 		<p class="md-typescale-label-large" style="margin: 0; width: 100%;">{i[0]}</p>

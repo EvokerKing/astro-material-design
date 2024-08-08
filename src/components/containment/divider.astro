@@ -3,12 +3,15 @@ interface props {
 	width?: string,
 	style?: string,
 	absolute?: boolean,
+	id?: string,
+	className?: string,
+	slot?: string
 }
 
-const { width = '100%', style, absolute } = Astro.props
+const { width = '100%', style, absolute, id, className, slot } = Astro.props
 ---
 
-<div style={style} class:list={{absolute}}></div>
+<div style={style} class:list={[absolute, className]} id={id} slot={slot}></div>
 
 <style define:vars={{width}}>
 	div {

@@ -1,13 +1,17 @@
 ---
 interface props {
-	type?: 'standard' | 'modal'
+	type?: 'standard' | 'modal',
+    id?: string,
+    className?: string,
+    slot?: string,
+    style?: string
 }
 
-const { type = 'standard' } = Astro.props
+const { type = 'standard', id, className, slot, style } = Astro.props
 // to open: document.querySelector('.nav-drawer')!.style.width = '360px';	document.querySelector('.scrim')!.style.display = 'block'
 ---
 
-<div class:list={["container", type == 'modal' && "md-elevation-1", "md-shape-corner-large-end", "md-motion-easing-emphasized", "md-motion-duration-medium4", "nav-drawer", type]}>
+<div id={id} slot={slot} style={style} class:list={["container", type == 'modal' && "md-elevation-1", "md-shape-corner-large-end", "md-motion-easing-emphasized", "md-motion-duration-medium4", "nav-drawer", type, className]}>
     <slot />
 </div>
 {type == 'modal' && <div class:list={['scrim']}></div>}

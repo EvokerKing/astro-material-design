@@ -3,12 +3,16 @@ import Icon from "../icon.astro";
 interface props {
 	placeholder: string,
 	name?: string,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { placeholder, name } = Astro.props
+const { placeholder, name, id, className, slot, style } = Astro.props
 ---
 
-<div class="md-elevation-3 md-shape-corner-full">
+<div class:list={["md-elevation-3 md-shape-corner-full", className]} id={id} slot={slot} style={style}>
 	<slot name="leading"><Icon>search</Icon></slot>
 	<input type="text" id={name} name={name} class="md-typescale-large-body" placeholder={placeholder} />
 	<slot name="trailing" />

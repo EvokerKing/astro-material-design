@@ -7,7 +7,9 @@ interface Props {
 	size?: string,
 	style?: 'outlined' | 'rounded' | 'sharp',
 	clearance?: string,
-	slot?: string
+	slot?: string,
+	id?: string,
+	className?: string,
 }
 
 const { color = 'var(--md-color-on-surface)', fill = '0', weight = '400', grade = '0', size = '24px', style = "outlined", clearance = '0', slot } = Astro.props

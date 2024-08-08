@@ -4,12 +4,16 @@ import Styles from "../styles.astro";
 interface Props {
 	onclick?: string,
 	icon?: string | undefined,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { onclick = "", icon = undefined } = Astro.props
+const { onclick = "", icon = undefined, id, className, slot, style } = Astro.props
 ---
 
-<button onclick={onclick} class="md-shape-corner-large md-elevation-3 md-typescale-label-large">{!!icon && <Icon size="24" color="var(--md-color-on-primary-container)">{icon}</Icon>}<slot /></button>
+<button id={id} slot={slot} style={style} onclick={onclick} class:list={["md-shape-corner-large md-elevation-3 md-typescale-label-large", className]}>{!!icon && <Icon size="24" color="var(--md-color-on-primary-container)">{icon}</Icon>}<slot /></button>
 
 <style>
 	button {

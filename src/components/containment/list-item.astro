@@ -1,8 +1,16 @@
 ---
 import Divider from "./divider.astro";
+interface Props {
+    id?: string,
+    className?: string,
+    slot?: string,
+    style?: string
+}
+
+const { id, className, slot, style } = Astro.props
 ---
 
-<main>
+<main id={id} class={className} style={style} slot={slot}>
     <slot name='leading' />
     <div>
         <p class="md-typescale-body-large" style="color: var(--md-color-on-surface); margin: 0;"><slot name="headline" /></p>

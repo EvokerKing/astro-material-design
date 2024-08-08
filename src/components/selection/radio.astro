@@ -2,15 +2,19 @@
 import IconButton from '../actions/icon-button.astro';
 interface Props {
 	group?: string,
-	state?: 'selected' | 'unselected'
+	state?: 'selected' | 'unselected',
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { group = 'radio-buttons', state = 'unselected' } = Astro.props
+const { group = 'radio-buttons', state = 'unselected', id, className, style, slot } = Astro.props
 
 const decoder = {selected: "radio_button_checked", unselected: "radio_button_unchecked"}
 ---
 
-<IconButton className={group} onclick="switchState(event)" color={state == 'selected' ? "var(--md-color-primary)" : "var(--md-color-on-surface-variant)"}>{decoder[state]}</IconButton>
+<IconButton className={`${group} ${className}`} id={id} slot={slot} style={style} onclick="switchState(event)" color={state == 'selected' ? "var(--md-color-primary)" : "var(--md-color-on-surface-variant)"}>{decoder[state]}</IconButton>
 
 <script is:inline>
 	function switchState(e) {

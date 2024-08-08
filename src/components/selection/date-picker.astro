@@ -2,13 +2,17 @@
 interface Props {
 	value?: string,
 	min?: string,
-	max?: string
+	max?: string,
+    id?: string,
+    className?: string,
+    slot?: string,
+    style?: string
 }
 
-const { value, min, max } = Astro.props
+const { value, min, max, id, className, style, slot } = Astro.props
 ---
 
-<div class="container md-motion-easing-emphasized md-motion-duration-short4 md-shape-corner-extra-small">
+<div class:list={["container md-motion-easing-emphasized md-motion-duration-short4 md-shape-corner-extra-small", className]} id={id} style={style} slot={slot}>
     <div class="input">
         <input type="date" id="text-input" class="md-typescale-body-large md-motion-easing-emphasized md-motion-duration-short4" required value={value} min={min} max={max} />
         <label class="label-text md-typescale-body-large md-motion-easing-emphasized md-motion-duration-short4" for="text-input">Date</label>

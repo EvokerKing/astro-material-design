@@ -4,9 +4,12 @@ interface Props {
 	type?: 'single' | 'multi',
 	items: string,
 	id: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { type = 'single', items, id = 'segmentedButton' } = Astro.props
+const { type = 'single', items, id = 'segmentedButton', className, slot, style } = Astro.props
 const list = JSON.parse(items)
 
 if (list.length < 2 || list.length > 5) {
@@ -14,7 +17,7 @@ if (list.length < 2 || list.length > 5) {
 }
 ---
 
-<main class="md-shape-corner-full">
+<main class:list={["md-shape-corner-full", className]} id={id} style={style} slot={slot}>
 	{list.map((i) => <div><p class="md-typescale-label-large">{i}</p></div>)}
 </main>
 

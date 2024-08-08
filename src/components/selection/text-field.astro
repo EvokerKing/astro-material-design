@@ -2,13 +2,17 @@
 import Icon from "../icon.astro";
 interface Props {
 	type?: 'filled' | 'outlined',
-	label?: string
+	label?: string,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { type = 'outlined', label = 'Placeholder' } = Astro.props
+const { type = 'outlined', label = 'Placeholder', id, style, slot, className } = Astro.props
 ---
 
-<div class:list={["container md-motion-easing-emphasized md-motion-duration-short4", type, type == 'filled' ? 'md-shape-corner-extra-small-top' : 'md-shape-corner-extra-small']}>
+<div id={id} style={style} slot={slot} class:list={["container md-motion-easing-emphasized md-motion-duration-short4", className, type, type == 'filled' ? 'md-shape-corner-extra-small-top' : 'md-shape-corner-extra-small']}>
 	<slot name="leading-icon" />
 	<div class="input">
 		<input type="text" id="text-input" class="md-typescale-body-large md-motion-easing-emphasized md-motion-duration-short4" required />

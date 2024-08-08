@@ -10,9 +10,10 @@ interface Props {
     slot?: string,
     className?: string,
     size?: string,
+    style?: string
 }
 
-const { type = 'standard', selectable = false, onclick = '', color, id = 'tooltipIdentification', slot, className, size } = Astro.props
+const { type = 'standard', selectable = false, onclick = '', color, id = 'tooltipIdentification', slot, className, size, style } = Astro.props
 
 if (type != 'standard' && color) {
 	throw new Error(`Color cannot be specified when type is ${type}, the type must be standard.`)
@@ -21,12 +22,7 @@ if (type != 'standard' && color) {
 const colorDecoder = {'standard': color ? color : "var(--md-color-on-surface-primary)", 'filled': "var(--md-color-primary)", 'tonal': "var(--md-color-on-surface-variant)", 'outlined': "var(--md-color-on-surface-variant)"}
 ---
 
-<button slot={slot} id={id} class:list={[type, 'md-shape-corner-full', className]} onclick={onclick}><Icon size={size ? size : '24px'} color={colorDecoder[type]}><slot /></Icon></button>
-<Tooltip type="rich" onclick="alert('the button works')" target={id}>
-    <Fragment slot="subhead">Rich tooltip</Fragment>
-    Rich tooltips bring attention to a particular element or feature that warrants the user's focus.
-    <Fragment slot="action">Action</Fragment>
-</Tooltip>
+<button style={style} slot={slot} id={id} class:list={[type, 'md-shape-corner-full', className]} onclick={onclick}><Icon size={size ? size : '24px'} color={colorDecoder[type]}><slot /></Icon></button>
 
 {!!selectable && <script>
 	const button = document.querySelector('button')

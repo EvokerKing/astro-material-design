@@ -2,14 +2,18 @@
 import IconButton from "../actions/icon-button.astro";
 interface props {
 	title: string,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string,
 }
 
-const { title } = Astro.props
+const { title, id, className, slot, style } = Astro.props
 
 // to open: document.querySelector('.side-sheet')!.style.width = '60%';	document.querySelector('.scrim')!.style.display = 'block'
 ---
 
-<div class:list={["container", "md-elevation-1", "md-shape-corner-large-start", "md-motion-easing-emphasized", "md-motion-duration-medium4", "side-sheet"]}>
+<div class:list={["container", "md-elevation-1", "md-shape-corner-large-start", "md-motion-easing-emphasized", "md-motion-duration-medium4", "side-sheet", className]} id={id} style={style} slot={slot}>
     <header>
 		<p class="md-typescale-title-large" style="color: var(--md-color-on-surface-variant); margin: 0; width: 100%;">{title}</p>
 		<IconButton color="var(--md-color-on-surface-variant)" onclick="document.querySelector('.side-sheet').style.width = '0'; document.querySelector('.scrim').style.display = 'none'">close</IconButton>

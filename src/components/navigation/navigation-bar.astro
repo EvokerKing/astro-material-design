@@ -4,9 +4,13 @@ import Badge from "../communication/badge.astro";
 interface props {
 	json: string,
 	selected: string,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { json, selected } = Astro.props
+const { json, selected, id, className, slot, style } = Astro.props
 const list = JSON.parse(json)
 
 if (list.length < 3 || list.length > 5) {
@@ -14,7 +18,7 @@ if (list.length < 3 || list.length > 5) {
 }
 ---
 
-<div class="container md-elevation-2">
+<div class:list={["container md-elevation-2", className]} id={id} slot={slot} style={style}>
 	{list.map((i, iter) => <div class="item" onclick={i[2]}>
 		{iter == parseInt(selected) ?
 				<div class="active md-shape-corner-full"><Icon>{i[1]}{i[3] && (i[3] == 'small' ? <Badge /> : <Badge number={i[3]} />)}</Icon></div> :

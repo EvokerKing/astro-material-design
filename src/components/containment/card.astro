@@ -1,13 +1,16 @@
 ---
 interface props {
 	type?: 'elevated' | 'filled' | 'outlined',
-	style: string
+	style: string,
+	id?: string,
+	className?: string,
+	slot?: string
 }
 
-const { type = 'elevated', style } = Astro.props
+const { type = 'elevated', style, id, className, slot } = Astro.props
 ---
 
-<div class:list={['container', type ,type == 'elevated' && 'md-elevation-1', 'md-shape-corner-medium']} style={style}>
+<div class:list={['container', type ,type == 'elevated' && 'md-elevation-1', 'md-shape-corner-medium', className]} style={style} id={id} slot={slot}>
 	<slot />
 </div>
 

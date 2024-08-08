@@ -3,10 +3,14 @@ import Icon from "../icon.astro";
 import Badge from "../communication/badge.astro";
 import Divider from "../containment/divider.astro";
 interface props {
-	list: Array<any>
+	list: Array<any>,
+	style?: string,
+	id?: string,
+	className?: string,
+	slot?: string
 }
 
-const { list } = Astro.props
+const { list, style, id, className, slot } = Astro.props
 ---
 
 <header class="tabs">
@@ -19,7 +23,7 @@ const { list } = Astro.props
 	))}
 	<Divider absolute />
 </header>
-<main class="tabs">
+<main class:list={["tabs", className]} style={style} id={id} slot={slot}>
 	<slot />
 </main>
 

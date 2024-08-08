@@ -4,9 +4,12 @@ interface Props {
 	type: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text',
 	onclick?: string,
 	icon?: string | undefined,
-	slot?: string | undefined
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
-const { type, onclick = "", icon = undefined, slot } = Astro.props
+const { type, onclick = "", icon = undefined, id, className, slot, style } = Astro.props
 
 let padding
 if (!!icon) {
@@ -23,7 +26,7 @@ if (type == 'text' && !icon) {
 const colorDecoder = {'elevated': 'var(--md-color-primary)', 'filled': 'var(--md-color-on-primary)', 'tonal': 'var(--md-color-on-secondary-container', 'outlined': 'var(--md-color-primary)', 'text': 'var(--md-color-primary)'};
 ---
 
-<button slot={slot} onclick={onclick} class={`${type} md-shape-corner-full ${type == 'elevated' && 'md-elevation-1'} md-typescale-label-large md-motion-easing-emphasized md-motion-duration-short4`}>{!!icon && <Icon size="18" color={colorDecoder[type]} weight="500">{icon}</Icon>}<slot /></button>
+<button id={id} slot={slot} style={style} onclick={onclick} class={`${type} md-shape-corner-full ${type == 'elevated' && 'md-elevation-1'} md-typescale-label-large md-motion-easing-emphasized md-motion-duration-short4 ${className}`}>{!!icon && <Icon size="18" color={colorDecoder[type]} weight="500">{icon}</Icon>}<slot /></button>
 
 <style define:vars={{padding}}>
 	.elevated {

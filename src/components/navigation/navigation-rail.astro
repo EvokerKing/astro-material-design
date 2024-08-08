@@ -4,9 +4,13 @@ import Icon from "../icon.astro";
 interface props {
 	json: string,
 	selected: string,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { json, selected } = Astro.props
+const { json, selected, id, className, slot, style } = Astro.props
 const list = JSON.parse(json)
 
 if (list.length < 3 || list.length > 7) {
@@ -14,7 +18,7 @@ if (list.length < 3 || list.length > 7) {
 }
 ---
 
-<main>
+<main id={id} class={className} slot={slot} style={style}>
 	<div style="position: absolute; top: 25px"><slot name="menu" /></div>
 	<div style="position: absolute; top: 65px"><slot name="fab" /></div>
 	<div class="container">

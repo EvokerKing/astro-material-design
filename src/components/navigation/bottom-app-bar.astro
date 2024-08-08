@@ -1,8 +1,15 @@
 ---
+interface Props {
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
+}
 
+const { id, className, style, slot } = Astro.props
 ---
 
-<div class="main-container md-elevaton-2">
+<div class:list={["main-container md-elevaton-2", className]} id={id} style={style} slot={slot}>
 	<div class="icons">
   	  <slot name="icons" />
 	</div>

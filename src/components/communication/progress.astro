@@ -1,16 +1,20 @@
 ---
 interface Props {
 	indeterminate?: boolean,
-	progress?: string
+	progress?: string,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { indeterminate = false, progress = '0%' } = Astro.props
+const { indeterminate = false, progress = '0%', id, className, slot, style } = Astro.props
 
 // to get the progress: parseInt(document.querySelector('#active')!.style.cssText.replace(/\D/g, ""))
 // to change the progress: document.querySelector('#active')!.style = `--progress: 50%;`
 ---
 
-<main>
+<main id={id} class={className} style={style} slot={slot}>
 	{indeterminate && <div class="track" class:list={['md-shape-corner-full', 'md-motion-easing-emphasized', 'md-motion-duration-long2', indeterminate && 'indeterminate']}></div>}
 	<div id="active" class:list={['md-shape-corner-full', 'md-motion-easing-emphasized', 'md-motion-duration-long2']}></div>
 	<div id="track" class:list={['md-shape-corner-full', 'md-motion-easing-emphasized', 'md-motion-duration-long2']}>

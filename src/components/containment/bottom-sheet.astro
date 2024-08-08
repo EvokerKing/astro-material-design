@@ -1,14 +1,18 @@
 ---
 interface props {
-	type?: 'standard' | 'modal'
+	type?: 'standard' | 'modal',
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { type = 'standard' } = Astro.props
+const { type = 'standard', id, className, slot, style } = Astro.props
 
 // to open: document.querySelector('.bottom-sheet')!.style.height = 'fit-content'
 ---
 
-<div class:list={[type, "container", "md-elevation-1", "md-shape-corner-extra-large-top", "md-motion-easing-emphasized", "md-motion-duration-medium4", "bottom-sheet"]}>
+<div class:list={[type, "container", "md-elevation-1", "md-shape-corner-extra-large-top", "md-motion-easing-emphasized", "md-motion-duration-medium4", "bottom-sheet", className]} id={id} slot={slot} style={style}>
 	<div class="handle md-shape-corner-full"></div>
 	<slot />
 </div>

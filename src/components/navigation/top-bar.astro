@@ -1,15 +1,19 @@
 ---
 interface props {
 	title: string,
-	type?: 'center' | 'small' | 'medium' | 'large'
+	type?: 'center' | 'small' | 'medium' | 'large',
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { title, type = 'center' } = Astro.props
+const { title, type = 'center', id, className, slot, style } = Astro.props
 
 const decoder = {center: 'md-typescale-title-large', small: 'md-typescale-title-large', medium: 'md-typescale-headline-small', large: 'md-typescale-headline-medium'};
 ---
 
-<div class:list={[type, 'container']}>
+<div class:list={[type, 'container', className]} id={id} slot={slot} style={style}>
 	<slot name="leading" />
     <p class:list={[decoder[type]]}>{title}</p>
 	<div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">

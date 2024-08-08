@@ -5,12 +5,15 @@ interface Props {
 	type?: 'fab' | 'small' | 'large',
 	onclick?: string,
 	slot?: string,
+	id?: string,
+	className?: string,
+	style?: string
 }
 
-const { type = 'fab', onclick = "", slot } = Astro.props
+const { type = 'fab', onclick = "", slot, id, className, style } = Astro.props
 ---
 
-<button slot={slot} onclick={onclick} class:list={[type, 'md-shape-corner-large', 'md-elevation-3']}><Icon size={type == 'fab' || type == 'small' ? '24px' : '36px'} color="var(--md-color-on-primary-container)"><slot /></Icon></button>
+<button style={style} slot={slot} onclick={onclick} class:list={[type, 'md-shape-corner-large', 'md-elevation-3', className]}><Icon size={type == 'fab' || type == 'small' ? '24px' : '36px'} color="var(--md-color-on-primary-container)"><slot /></Icon></button>
 
 <style>
 	.fab {

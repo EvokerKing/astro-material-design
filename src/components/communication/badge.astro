@@ -1,10 +1,14 @@
 ---
 interface props {
 	type?: 'small' | 'large',
-	number?: string
+	number?: string,
+	id?: string,
+	className?: string,
+	slot?: string,
+	style?: string
 }
 
-const { type =  Astro.props.number ? 'large' : 'small', number } = Astro.props
+const { type =  Astro.props.number ? 'large' : 'small', number, id, className, slot = 'badge', style } = Astro.props
 
 let num
 if (number) {
@@ -16,7 +20,7 @@ if (number) {
 }
 ---
 
-<div class:list={['md-shape-corner-full', type]} slot="badge">{type == 'large' && <p class="md-typescale-label-small">{num}</p>}</div>
+<div class:list={['md-shape-corner-full', type, className]} slot={slot} id={id} style={style}>{type == 'large' && <p class="md-typescale-label-small">{num}</p>}</div>
 
 <style>
 	.md-typescale-label-small {
