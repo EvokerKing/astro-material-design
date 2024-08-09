@@ -1,5 +1,5 @@
 ---
-interface props {
+interface Props {
 	title: string,
 	type?: 'center' | 'small' | 'medium' | 'large',
 	id?: string,
@@ -10,7 +10,7 @@ interface props {
 
 const { title, type = 'center', id, className, slot, style } = Astro.props
 
-const decoder = {center: 'md-typescale-title-large', small: 'md-typescale-title-large', medium: 'md-typescale-headline-small', large: 'md-typescale-headline-medium'};
+const decoder: any = {center: 'md-typescale-title-large', small: 'md-typescale-title-large', medium: 'md-typescale-headline-small', large: 'md-typescale-headline-medium'};
 ---
 
 <div class:list={[type, 'container', className]} id={id} slot={slot} style={style}>

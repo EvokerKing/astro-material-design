@@ -1,6 +1,6 @@
 ---
 import IconButton from "../actions/icon-button.astro";
-interface props {
+interface Props {
 	title: string,
 	id?: string,
 	className?: string,
@@ -24,8 +24,8 @@ const { title, id, className, slot, style } = Astro.props
 
 <script>
 	document.querySelector('.scrim')!.addEventListener('click', () => {
-		document.querySelector('.side-sheet')!.style.width = '0'
-		document.querySelector('.scrim')!.style.display = 'none'
+		(document.querySelector('.side-sheet') as HTMLElement).style.width = '0';
+		(document.querySelector('.scrim') as HTMLElement).style.display = 'none'
 	});
 </script>
 

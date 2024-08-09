@@ -1,5 +1,5 @@
 ---
-interface props {
+interface Props {
 	type?: 'standard' | 'modal',
 	id?: string,
 	className?: string,
@@ -20,7 +20,7 @@ const { type = 'standard', id, className, slot, style } = Astro.props
 
 <script>
 	document.querySelector('.scrim')!.addEventListener('click', () => {
-		document.querySelector('.bottom-sheet')!.style.height = '0'
+		(document.querySelector('.bottom-sheet') as HTMLElement).style.height = '0'
 	});
 </script>
 

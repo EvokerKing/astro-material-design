@@ -14,7 +14,7 @@ const { list, id, className, style, slot } = Astro.props
 ---
 
 <main class:list={["md-shape-corner-extra-small menu", className]} id={id} style={style} slot={slot}>
-	{list.map((i, iter) => <div onclick={i[3]}>
+	{list.map((i) => <div onclick={i[3]}>
 		<Icon>{i[1]}</Icon>
 		<p class="md-typescale-label-large" style="margin: 0; width: 100%;">{i[0]}</p>
 		<Fragment set:html={i[2]}></Fragment>

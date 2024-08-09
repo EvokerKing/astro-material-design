@@ -2,7 +2,7 @@
 import Icon from "../icon.astro";
 import Badge from "../communication/badge.astro";
 import Divider from "../containment/divider.astro";
-interface props {
+interface Props {
 	list: Array<any>,
 	style?: string,
 	id?: string,
@@ -30,18 +30,18 @@ const { list, style, id, className, slot } = Astro.props
 <script>
 	function select(index: number) {
 		if (document.querySelector('.active-nochange')) {
-			document.querySelector('.active-nochange')!.style.width = '0'
-			document.querySelector('.active-header')!.children[0].style = '--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: #000000;--clearance: 0;'
-			document.querySelector('.active-header')!.children[1].classList.remove('active')
-			document.querySelector('.active-header')!.children[2].style.width = '0'
+			(document.querySelector('.active-nochange')! as HTMLElement).style.width = '0';
+			(document.querySelector('.active-header')!.children[0] as HTMLElement).setAttribute('style', '--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: #000000;--clearance: 0;')
+			document.querySelector('.active-header')!.children[1].classList.remove('active');
+			(document.querySelector('.active-header')!.children[2] as HTMLElement).style.width = '0'
 			document.querySelector('.active-nochange')!.classList.remove('active-nochange')
 			document.querySelector('.active-header')!.classList.remove('active-header')
 		}
 
-		document.querySelector('main.tabs')!.children[index].style.width = '100%'
-		document.querySelector('header.tabs')!.children[index].children[0].style = '--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-primary);--clearance: 0;'
-		document.querySelector('header.tabs')!.children[index].children[1].classList.add('active')
-		document.querySelector('header.tabs')!.children[index].children[2].style.width = `${document.querySelector('header.tabs')!.children[index].children[1].offsetWidth}px`
+		(document.querySelector('main.tabs')!.children[index] as HTMLElement).style.width = '100%';
+		(document.querySelector('header.tabs')!.children[index].children[0] as HTMLElement).setAttribute('style', '--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-primary);--clearance: 0;')
+		document.querySelector('header.tabs')!.children[index].children[1].classList.add('active');
+		(document.querySelector('header.tabs')!.children[index].children[2] as HTMLElement).style.width = `${(document.querySelector('header.tabs')!.children[index].children[1] as HTMLElement).offsetWidth}px`
 
 		document.querySelector('main.tabs')!.children[index].classList.add('active-nochange')
 		document.querySelector('header.tabs')!.children[index].classList.add('active-header')
@@ -52,12 +52,12 @@ const { list, style, id, className, slot } = Astro.props
 	for (let i = 0; i < children.length; i++) {
 		children[i].addEventListener('click', e => {
 			let target
-			if (e.target!.tagName !== 'DIV') {
-				target = e.target!.parentElement
+			if ((e.target as HTMLElement).tagName !== 'DIV') {
+				target = (e.target as HTMLElement).parentElement
 			} else {
 				target = e.target
 			}
-			select(target.id)
+			select(parseInt((target as HTMLElement).id))
 		})
 	}
 </script>

@@ -1,5 +1,5 @@
 ---
-interface props {
+interface Props {
 	type?: 'standard' | 'modal',
     id?: string,
     className?: string,
@@ -18,8 +18,8 @@ const { type = 'standard', id, className, slot, style } = Astro.props
 
 <script>
 	document.querySelector('.scrim')!.addEventListener('click', () => {
-		document.querySelector('.nav-drawer')!.style.width = '0'
-		document.querySelector('.scrim')!.style.display = 'none'
+		(document.querySelector('.nav-drawer') as HTMLElement).style.width = '0';
+		(document.querySelector('.scrim') as HTMLElement).style.display = 'none'
 	});
 </script>
 

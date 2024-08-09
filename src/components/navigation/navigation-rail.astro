@@ -1,7 +1,7 @@
 ---
 import Badge from "../communication/badge.astro";
 import Icon from "../icon.astro";
-interface props {
+interface Props {
 	json: string,
 	selected: string,
 	id?: string,
@@ -22,7 +22,7 @@ if (list.length < 3 || list.length > 7) {
 	<div style="position: absolute; top: 25px"><slot name="menu" /></div>
 	<div style="position: absolute; top: 65px"><slot name="fab" /></div>
 	<div class="container">
-		{list.map((i, iter) => <div class="item" onclick={i[2]}>
+		{list.map((i: any, iter: number) => <div class="item" onclick={i[2]}>
 			{iter == parseInt(selected) ?
 					<div class="active md-shape-corner-full"><Icon>{i[1]}{i[3] && (i[3] == 'small' ? <Badge /> : <Badge number={i[3]} />)}</Icon></div> :
 					<Icon>{i[1]}{i[3] && (i[3] == 'small' ? <Badge /> : <Badge number={i[3]} />)}</Icon>}

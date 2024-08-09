@@ -6,7 +6,7 @@ export default defineConfig({
 		{
 			name: "astro-material-design",
 			hooks: {
-				"astro:config:setup": (options) => {}
+				"astro:config:setup": () => {}
 			}
 		}
 	]

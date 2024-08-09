@@ -1,6 +1,5 @@
 ---
 import Icon from "../icon.astro";
-import Tooltip from "../communication/tooltip.astro";
 interface Props {
 	type?: 'standard' | 'filled' | 'tonal' | 'outlined',
 	selectable?: boolean,
@@ -26,8 +25,8 @@ const colorDecoder = {'standard': color ? color : "var(--md-color-on-surface-pri
 
 {!!selectable && <script>
 	const button = document.querySelector('button')
-	const colorDecoder = {'standard': "var(--md-color-on-surface-primary)", 'filled': "var(--md-color-primary)", 'tonal': "var(--md-color-on-surface-variant)", 'outlined': "var(--md-color-on-surface-variant)"}
-	const selectedDecoder = {'standard': "var(--md-color-primary)", 'filled': "var(--md-color-on-primary)", 'tonal': "var(--md-color-on-secondary-container)", 'outlined': "var(--md-color-inverse-on-surface)"}
+	const colorDecoder: any = {'standard': "var(--md-color-on-surface-primary)", 'filled': "var(--md-color-primary)", 'tonal': "var(--md-color-on-surface-variant)", 'outlined': "var(--md-color-on-surface-variant)"}
+	const selectedDecoder: any = {'standard': "var(--md-color-primary)", 'filled': "var(--md-color-on-primary)", 'tonal': "var(--md-color-on-secondary-container)", 'outlined': "var(--md-color-inverse-on-surface)"}
 	let type = ''
 
 	if (!!button) {
@@ -42,9 +41,9 @@ const colorDecoder = {'standard': color ? color : "var(--md-color-on-surface-pri
 		}
 		button.addEventListener('click', () => {
 			if (button.classList.toggle('selected')) {
-				button.children[0].style = `--fillNum: 1; --color: ${selectedDecoder[type]}; --weightNum: 400; --gradeNum: 0; --size: 24px; --clearance: 0;`
+				(button.children[0] as HTMLElement).setAttribute('style', `--fillNum: 1; --color: ${selectedDecoder[type]}; --weightNum: 400; --gradeNum: 0; --size: 24px; --clearance: 0;`)
 			} else {
-				button.children[0].style = `--fillNum: 0; --color: ${colorDecoder[type]}; --weightNum: 400; --gradeNum: 0; --size: 24px; --clearance: 0;`
+				(button.children[0] as HTMLElement).setAttribute('style', `--fillNum: 0; --color: ${colorDecoder[type]}; --weightNum: 400; --gradeNum: 0; --size: 24px; --clearance: 0;`)
 			}
 		})
 	}

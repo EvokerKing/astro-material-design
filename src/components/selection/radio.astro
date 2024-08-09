@@ -17,7 +17,7 @@ const decoder = {selected: "radio_button_checked", unselected: "radio_button_unc
 <IconButton className={`${group} ${className}`} id={id} slot={slot} style={style} onclick="switchState(event)" color={state == 'selected' ? "var(--md-color-primary)" : "var(--md-color-on-surface-variant)"}>{decoder[state]}</IconButton>
 
 <script is:inline>
-	function switchState(e) {
+	document.querySelector('button').addEventListener('onclick', (e) => {
 		if (e.target.children[0].innerHTML === "radio_button_unchecked") {
 			document.querySelectorAll(`.${e.target.classList[2]}`).forEach((el) => {
 				if (el !== e.target) {
@@ -29,5 +29,5 @@ const decoder = {selected: "radio_button_checked", unselected: "radio_button_unc
 			e.target.children[0].innerHTML = "radio_button_checked"
 			e.target.children[0].style = '--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-primary);--clearance: 0;'
 		}
-	}
+	})
 </script>

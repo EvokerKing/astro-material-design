@@ -1,7 +1,5 @@
 ---
-import Icon from "../icon.astro";
 interface Props {
-	type?: 'single' | 'multi',
 	items: string,
 	id: string,
 	className?: string,
@@ -9,7 +7,7 @@ interface Props {
 	style?: string
 }
 
-const { type = 'single', items, id = 'segmentedButton', className, slot, style } = Astro.props
+const { items, id = 'segmentedButton', className, slot, style } = Astro.props
 const list = JSON.parse(items)
 
 if (list.length < 2 || list.length > 5) {
@@ -18,30 +16,30 @@ if (list.length < 2 || list.length > 5) {
 ---
 
 <main class:list={["md-shape-corner-full", className]} id={id} style={style} slot={slot}>
-	{list.map((i) => <div><p class="md-typescale-label-large">{i}</p></div>)}
+	{list.map((i: string) => <div><p class="md-typescale-label-large">{i}</p></div>)}
 </main>
 
 <script>
-	function addIcon(x: Node) {
+	function addIcon(x: HTMLElement) {
 		const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-		icon.style = 'width: 24px; height: 24px; color: var(--md-color-on-secondary-container); user-select: none;'
+		icon.setAttribute('style', 'width: 24px; height: 24px; color: var(--md-color-on-secondary-container); user-select: none;')
 		icon.innerHTML = '<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>'
 		icon.setAttribute('viewBox', '0 -960 960 960')
 		x.insertBefore(icon, x.children[0])
 	}
 
 	document.querySelector('#segmentedButton')!.children[0].classList.add('selected')
-	addIcon(document.querySelector('main')!.children[0])
+	addIcon(document.querySelector('main')!.children[0] as HTMLElement)
 
 	document.querySelectorAll('#segmentedButton div').forEach(el => {
 		el.addEventListener('click', (e) => {
 			let element
-			if (e.target?.tagName === 'P' || e.target?.tagName === 'svg') {
-				element = e.target.parentElement
+			if ((e.target as HTMLElement).tagName === 'P' || (e.target as HTMLElement).tagName === 'svg') {
+				element = (e.target as HTMLElement).parentElement as HTMLElement
 			} else {
-				element = e.target
+				element = e.target as HTMLElement
 			}
-			if (!element.classList.contains('selected')) {
+			if (!(element.classList.contains('selected'))) {
 				element.classList.add('selected')
 				addIcon(element)
 			}

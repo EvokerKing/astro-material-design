@@ -1,6 +1,5 @@
 ---
 import Icon from "../icon.astro";
-import Styles from "../styles.astro";
 interface Props {
 	type?: 'fab' | 'small' | 'large',
 	onclick?: string,
@@ -13,7 +12,7 @@ interface Props {
 const { type = 'fab', onclick = "", slot, id, className, style } = Astro.props
 ---
 
-<button style={style} slot={slot} onclick={onclick} class:list={[type, 'md-shape-corner-large', 'md-elevation-3', className]}><Icon size={type == 'fab' || type == 'small' ? '24px' : '36px'} color="var(--md-color-on-primary-container)"><slot /></Icon></button>
+<button style={style} slot={slot} onclick={onclick} id={id} class:list={[type, 'md-shape-corner-large', 'md-elevation-3', className]}><Icon size={type == 'fab' || type == 'small' ? '24px' : '36px'} color="var(--md-color-on-primary-container)"><slot /></Icon></button>
 
 <style>
 	.fab {

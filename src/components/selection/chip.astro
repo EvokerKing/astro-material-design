@@ -14,22 +14,24 @@ interface Props {
 const { type = 'suggestion', icon, trailingIcon, onclick, id, className, style, slot } = Astro.props
 ---
 
-<div class:list={["md-shape-corner-small", type, className]} onclick={type == 'filter' ? 'toggleSelection(event)' : onclick} id={id} slot={slot} style={style}>
-	{type == 'assist' || type == 'filter' || type == 'input' && <Icon size="18px" color={type == 'filter' ? 'var(--md-color-on-secondary-container)' : 'var(--md-color-primary)'} grade="200" weight="600">{icon}</Icon>}
+<div class:list={["md-shape-corner-small", type, className]} onclick={onclick} id={id} slot={slot} style={style}>
+	{!(type == 'suggestion') && <Icon size="18px" color={type == 'filter' ? 'var(--md-color-on-secondary-container)' : 'var(--md-color-primary)'} grade="200" weight="600">{icon}</Icon>}
 	<p class="md-typescale-label-large"><slot /></p>
 	{type == 'filter' || type == 'input' && <Icon size="18px" color="var(--md-color-on-surface-variant)" grade="200" weight="600">{trailingIcon}</Icon>}
 </div>
 
-<script is:inline>
-	function toggleSelection(e) {
-		let element
-		if (e.target?.tagName !== 'DIV') {
-			element = e.target.parentElement
-		} else {
-			element = e.target
-		}
+<script is:inline define:vars={{onclick}}>
+	if (!onclick) {
+		document.querySelector('div').addEventListener('onclick', (e) => {
+			let element
+			if (e.target?.tagName !== 'DIV') {
+				element = e.target.parentElement
+			} else {
+				element = e.target
+			}
 
-		element.classList.toggle("selected")
+			element.classList.toggle("selected")
+		})
 	}
 </script>
 

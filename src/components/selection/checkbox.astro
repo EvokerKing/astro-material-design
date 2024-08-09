@@ -1,6 +1,6 @@
 ---
 import Icon from "../icon.astro";
-interface props {
+interface Props {
 	state?: 'unselected' | 'selected' | 'indeterminate',
 	id?: string,
 	className?: string,
@@ -10,12 +10,32 @@ interface props {
 
 const { state = 'unselected', id, className, slot, style } = Astro.props
 
-const decoder = {unselected: 'check_box_outline_blank', selected: 'check_box', indeterminate: 'indeterminate_check_box'}
+const decoder: any = {unselected: 'check_box_outline_blank', selected: 'check_box', indeterminate: 'indeterminate_check_box'}
 ---
 
-<div class:list={["md-shape-corner-full", state, className]} id={id} slot={slot} style={style} onclick="if (event.target.classList.contains('indeterminate')) {event.target.classList.remove('indeterminate'); event.target.classList.add('unselected'); event.target.children[0].style = `--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-on-surface-variant);--clearance: 0;`; event.target.children[0].innerText = 'check_box_outline_blank'} else {if (event.target.classList.contains('unselected')) {event.target.children[0].style = `--fillNum: 1;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-primary);--clearance: 0;`; event.target.children[0].innerText = 'check_box'} else {event.target.children[0].style = `--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-on-surface-variant);--clearance: 0;`; event.target.children[0].innerText = 'check_box_outline_blank'} event.target.classList.toggle('unselected'); event.target.classList.toggle('selected');}">
+<div class:list={["md-shape-corner-full", state, className]} id={id} slot={slot} style={style} onclick="">
 	<Icon color={state == 'unselected' ? "var(--md-color-on-surface-variant)" : "var(--md-color-primary)"} fill={state == 'unselected' ? "0" : "1"}>{decoder[state]}</Icon>
 </div>
+
+<script is:inline>
+	document.querySelector('div').addEventListener('onclick', (e) => {
+		if (e.target.classList.contains('indeterminate')) {
+			e.target.classList.remove('indeterminate')
+			e.target.classList.add('unselected'); e.target.children[0].style = `--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-on-surface-variant);--clearance: 0;`
+			e.target.children[0].innerText = 'check_box_outline_blank'
+		} else {
+			if (e.target.classList.contains('unselected')) {
+				e.target.children[0].style = `--fillNum: 1;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-primary);--clearance: 0;`
+				e.target.children[0].innerText = 'check_box'
+			} else {
+				e.target.children[0].style = `--fillNum: 0;--weightNum: 400;--gradeNum: 0;--size: 24px;--color: var(--md-color-on-surface-variant);--clearance: 0;`
+				e.target.children[0].innerText = 'check_box_outline_blank'
+			}
+			e.target.classList.toggle('unselected')
+			e.target.classList.toggle('selected')
+		}
+	})
+</script>
 
 <style>
 	div {

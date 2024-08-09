@@ -14,15 +14,15 @@ interface Props {
 const { action, onclick = '', href, closable = false, id = 'uniqueSnackbarIdentifier', className, slot, style } = Astro.props
 
 export function snackbarOpen(delay: number, id: string = 'uniqueSnackbarIdentifier') {
-	document.querySelector(`#${id}`)!.style.height = '48px'
+	(document.querySelector(`#${id}`) as HTMLElement).style.height = '48px'
 	setTimeout(() => {
-		document.querySelector(`#${id}`)!.style.opacity = '0%'
+		(document.querySelector(`#${id}`) as HTMLElement).style.opacity = '0%'
 	}, delay)
 }
 // import: import {snackbarOpen} from "../components/communication/snackbar.astro";
 ---
 
-<main class:list={['md-elevation-3', 'md-shape-corner-extra-small', closable && 'close', 'md-motion-easing-emphasized', 'md-motion-duration-medium2', className]} id={id} slot={slot} style={slot}>
+<main class:list={['md-elevation-3', 'md-shape-corner-extra-small', closable && 'close', 'md-motion-easing-emphasized', 'md-motion-duration-medium2', className]} id={id} slot={slot} style={style}>
 	<p class="md-typescale-body-medium"><slot /></p>
 	{action && <a class="md-typescale-label-large md-shape-corner-full" onclick={onclick} href={href}>{action}</a>}
 	{closable && <IconButton onclick="document.querySelector('#uniqueSnackbarIdentifier').style.opacity = '0%'" color="var(--md-color-inverse-on-surface)">close</IconButton>}
