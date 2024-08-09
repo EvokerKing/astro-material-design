@@ -1,6 +1,6 @@
 {
 	"name": "astro-material-design",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"author": "Hex",
 	"description": " A custom Astro integration allowing the user to easily create Material 3 websites",
 	"repository": {
@@ -16,5 +16,8 @@
 	"bugs": {
 		"url": "https://github.com/EvokerKing/astro-material-design/issues"
 	},
-	"homepage": "https://github.com/EvokerKing/astro-material-design#readme"
+	"homepage": "https://github.com/EvokerKing/astro-material-design#readme",
+	"dependencies": {
+		"@material/material-color-utilities": "^0.3.0"
+	}
 }
