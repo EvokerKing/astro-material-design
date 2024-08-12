@@ -3,7 +3,7 @@ import Badge from "../communication/badge.astro";
 import Icon from "../icon.astro";
 interface Props {
 	json: string,
-	selected: string,
+	selected?: string,
 	id?: string,
 	className?: string,
 	slot?: string,
@@ -23,7 +23,7 @@ if (list.length < 3 || list.length > 7) {
 	<div style="position: absolute; top: 65px"><slot name="fab" /></div>
 	<div class="container">
 		{list.map((i: any, iter: number) => <div class="item" onclick={i[2]}>
-			{iter == parseInt(selected) ?
+			{selected && iter == parseInt(selected) ?
 					<div class="active md-shape-corner-full"><Icon>{i[1]}{i[3] && (i[3] == 'small' ? <Badge /> : <Badge number={i[3]} />)}</Icon></div> :
 					<Icon>{i[1]}{i[3] && (i[3] == 'small' ? <Badge /> : <Badge number={i[3]} />)}</Icon>}
 			<p class="md-typescale-label-medium">{i[0]}</p>
