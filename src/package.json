@@ -1,6 +1,6 @@
 {
 	"name": "astro-material-design",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"author": "Hex",
 	"description": " A custom Astro integration allowing the user to easily create Material 3 websites",
 	"repository": {

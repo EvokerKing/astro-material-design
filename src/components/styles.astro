@@ -1,9 +1,10 @@
 ---
 interface Props {
 	hex: string,
-	dark?: boolean
+	dark?: boolean,
+	imported?: boolean,
 }
-const { hex, dark = false } = Astro.props
+const { hex, dark = false, imported } = Astro.props
 
 import { themeFromSourceColor, argbFromHex, hexFromArgb } from "@material/material-color-utilities"
 
@@ -92,9 +93,9 @@ const styles = `
 
 <style is:global set:html={styles}></style>
 
-<style is:global>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+{!imported && <style is:global>@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');</style>}
 
+<style is:global>
 	.md-elevation-5 {
 		box-shadow: rgba(0, 0, 0, 0.1) 0 8px 12px 6px;
 	}
