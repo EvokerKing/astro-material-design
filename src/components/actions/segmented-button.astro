@@ -22,7 +22,7 @@ if (list.length < 2 || list.length > 5) {
 <script>
 	function addIcon(x: HTMLElement) {
 		const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-		icon.setAttribute('style', 'width: 24px; height: 24px; color: var(--md-color-on-secondary-container); user-select: none;')
+		icon.setAttribute('style', 'width: 24px; height: 24px; color: var(--md-color-on-primary-container); user-select: none;')
 		icon.innerHTML = '<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>'
 		icon.setAttribute('viewBox', '0 -960 960 960')
 		x.insertBefore(icon, x.children[0])
@@ -83,11 +83,11 @@ if (list.length < 2 || list.length > 5) {
 	}
 
 	div.selected {
-        background: var(--md-color-secondary-container);
+        background: var(--md-color-primary-container);
 	}
 
 	p.selected {
-		color: var(--md-color-on-secondary-container);
+		color: var(--md-color-on-primary-container);
 	}
 
 	p {

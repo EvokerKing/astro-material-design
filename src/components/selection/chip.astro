@@ -15,7 +15,7 @@ const { type = 'suggestion', icon, trailingIcon, onclick, id, className, style, 
 ---
 
 <div class:list={["md-shape-corner-small", type, className]} onclick={onclick} id={id} slot={slot} style={style}>
-	{!(type == 'suggestion') && <Icon size="18px" color={type == 'filter' ? 'var(--md-color-on-secondary-container)' : 'var(--md-color-primary)'} grade="200" weight="600">{icon}</Icon>}
+	{!(type == 'suggestion') && <Icon size="18px" color={type == 'filter' ? 'var(--md-color-on-primary-container)' : 'var(--md-color-primary)'} grade="200" weight="600">{icon}</Icon>}
 	<p class="md-typescale-label-large"><slot /></p>
 	{type == 'filter' || type == 'input' && <Icon size="18px" color="var(--md-color-on-surface-variant)" grade="200" weight="600">{trailingIcon}</Icon>}
 </div>
@@ -80,7 +80,7 @@ const { type = 'suggestion', icon, trailingIcon, onclick, id, className, style, 
 
     div.filter.selected {
         outline: none;
-        background: var(--md-color-secondary-container);
+        background: var(--md-color-primary-container);
     }
 
     div.filter:hover::after {
@@ -153,6 +153,6 @@ const { type = 'suggestion', icon, trailingIcon, onclick, id, className, style, 
 	}
 
 	div.selected p {
-		color: var(--md-color-on-secondary-container);
+		color: var(--md-color-on-primary-container);
 	}
 </style>

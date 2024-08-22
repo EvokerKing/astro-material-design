@@ -26,7 +26,7 @@ const colorDecoder = {'standard': color ? color : "var(--md-color-on-surface-pri
 {!!selectable && <script>
 	const button = document.querySelector('button')
 	const colorDecoder: any = {'standard': "var(--md-color-on-surface-primary)", 'filled': "var(--md-color-primary)", 'tonal': "var(--md-color-on-surface-variant)", 'outlined': "var(--md-color-on-surface-variant)"}
-	const selectedDecoder: any = {'standard': "var(--md-color-primary)", 'filled': "var(--md-color-on-primary)", 'tonal': "var(--md-color-on-secondary-container)", 'outlined': "var(--md-color-inverse-on-surface)"}
+	const selectedDecoder: any = {'standard': "var(--md-color-primary)", 'filled': "var(--md-color-on-primary)", 'tonal': "var(--md-color-on-primary-container)", 'outlined': "var(--md-color-inverse-on-surface)"}
 	let type = ''
 
 	if (!!button) {
@@ -154,7 +154,7 @@ const colorDecoder = {'standard': color ? color : "var(--md-color-on-surface-pri
     }
 
     .tonal.selected {
-        background:  var(--md-color-secondary-container);
+        background:  var(--md-color-primary-container);
     }
 
     .tonal {
@@ -166,7 +166,7 @@ const colorDecoder = {'standard': color ? color : "var(--md-color-on-surface-pri
     }
 
     .tonal.selected:hover::after {
-        background:  var(--md-color-on-secondary-container);
+        background:  var(--md-color-on-primary-container);
     }
 
     .tonal:hover::after {
@@ -187,7 +187,7 @@ const colorDecoder = {'standard': color ? color : "var(--md-color-on-surface-pri
     }
 
     .tonal.selected:focus::after {
-        background:  var(--md-color-on-secondary-container);
+        background:  var(--md-color-on-primary-container);
     }
 
     .tonal:focus::after {
